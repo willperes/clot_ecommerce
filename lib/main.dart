@@ -15,12 +15,11 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      behavior: HitTestBehavior.translucent,
       onTap: () {
-        FocusScope.of(context).unfocus();
+        FocusManager.instance.primaryFocus?.unfocus();
       },
       child: MaterialApp(
-        title: 'Flutter Demo',
+        title: 'Clot',
         theme: AppTheme().theme,
         initialRoute: SignInFirstStep.routeName,
         routes: {
