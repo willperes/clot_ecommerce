@@ -1,6 +1,6 @@
-import 'package:clot/screens/products_screen.dart';
-import 'package:clot/screens/sign_in/sign_in_first_step.dart';
-import 'package:clot/screens/sign_in/sign_in_second_step.dart';
+import 'package:clot/screens/home_screen.dart';
+import 'package:clot/screens/sign_in_screens/sign_in_first_step_screen.dart';
+import 'package:clot/screens/sign_in_screens/sign_in_second_step_screen.dart';
 import 'package:clot/theme/theme.dart';
 import 'package:flutter/material.dart';
 
@@ -20,12 +20,15 @@ class MyApp extends StatelessWidget {
       },
       child: MaterialApp(
         title: 'Clot',
-        theme: AppTheme().theme,
-        initialRoute: SignInFirstStep.routeName,
+        theme: AppTheme().getTheme("light"),
+        darkTheme: AppTheme().getTheme("dark"),
+        initialRoute: HomeScreen.routeName,
         routes: {
-          SignInFirstStep.routeName: (context) => const SignInFirstStep(),
-          SignInSecondStep.routeName: (context) => const SignInSecondStep(),
-          ProductsScreen.routeName: (context) => const ProductsScreen(),
+          SignInFirstStepScreen.routeName: (context) =>
+              const SignInFirstStepScreen(),
+          SignInSecondStepScreen.routeName: (context) =>
+              const SignInSecondStepScreen(),
+          HomeScreen.routeName: (context) => const HomeScreen(),
         },
       ),
     );

@@ -1,19 +1,19 @@
-import 'package:clot/screens/sign_in/sign_in_second_step.dart';
+import 'package:clot/screens/sign_in_screens/sign_in_second_step_screen.dart';
 import 'package:clot/widgets/default_text_form_field.dart';
 import 'package:clot/widgets/sign_in/socials_sign_in.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
-class SignInFirstStep extends StatefulWidget {
-  const SignInFirstStep({super.key});
+class SignInFirstStepScreen extends StatefulWidget {
+  const SignInFirstStepScreen({super.key});
 
   static const routeName = "sign_in_first_step";
 
   @override
-  State<SignInFirstStep> createState() => _SignInFirstStepState();
+  State<SignInFirstStepScreen> createState() => _SignInFirstStepScreenState();
 }
 
-class _SignInFirstStepState extends State<SignInFirstStep> {
+class _SignInFirstStepScreenState extends State<SignInFirstStepScreen> {
   final _formKey = GlobalKey<FormState>();
   final _emailController = TextEditingController();
 
@@ -21,7 +21,7 @@ class _SignInFirstStepState extends State<SignInFirstStep> {
     if (_formKey.currentState != null && _formKey.currentState!.validate()) {
       Navigator.pushNamed(
         context,
-        SignInSecondStep.routeName,
+        SignInSecondStepScreen.routeName,
         arguments: _emailController.text,
       );
     }
@@ -36,7 +36,10 @@ class _SignInFirstStepState extends State<SignInFirstStep> {
         children: [
           Text(
             "Sign In",
-            style: Theme.of(context).textTheme.titleLarge,
+            style: Theme.of(context).textTheme.displayLarge?.copyWith(
+                  color: Theme.of(context).colorScheme.onSurface,
+                  fontWeight: FontWeight.bold,
+                ),
           ),
           const SizedBox(height: 32),
           Form(

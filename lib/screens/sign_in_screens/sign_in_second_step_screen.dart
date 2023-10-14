@@ -1,19 +1,19 @@
-import 'package:clot/screens/products_screen.dart';
+import 'package:clot/screens/home_screen.dart';
 import 'package:clot/widgets/default_back_button.dart';
 import 'package:clot/widgets/default_text_form_field.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
-class SignInSecondStep extends StatefulWidget {
-  const SignInSecondStep({super.key});
+class SignInSecondStepScreen extends StatefulWidget {
+  const SignInSecondStepScreen({super.key});
 
   static const routeName = "sign_in_second_step";
 
   @override
-  State<SignInSecondStep> createState() => _SignInSecondStepState();
+  State<SignInSecondStepScreen> createState() => _SignInSecondStepScreenState();
 }
 
-class _SignInSecondStepState extends State<SignInSecondStep> {
+class _SignInSecondStepScreenState extends State<SignInSecondStepScreen> {
   final _formKey = GlobalKey<FormState>();
   final _passwordController = TextEditingController();
 
@@ -21,7 +21,7 @@ class _SignInSecondStepState extends State<SignInSecondStep> {
     if (_formKey.currentState != null && _formKey.currentState!.validate()) {
       Navigator.pushNamedAndRemoveUntil(
         context,
-        ProductsScreen.routeName,
+        HomeScreen.routeName,
         (route) => false,
       );
     }
@@ -40,7 +40,10 @@ class _SignInSecondStepState extends State<SignInSecondStep> {
         children: [
           Text(
             "Sign In",
-            style: Theme.of(context).textTheme.titleLarge,
+            style: Theme.of(context).textTheme.displayLarge?.copyWith(
+                  color: Theme.of(context).colorScheme.onSurface,
+                  fontWeight: FontWeight.bold,
+                ),
           ),
           const SizedBox(height: 32),
           Form(

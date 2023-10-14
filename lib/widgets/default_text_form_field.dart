@@ -1,4 +1,3 @@
-import 'package:clot/theme/theme_colors.dart';
 import 'package:flutter/material.dart';
 
 class DefaultTextField extends StatefulWidget {
@@ -52,7 +51,7 @@ class _DefaultTextFieldState extends State<DefaultTextField> {
           fontWeight: FontWeight.w500,
         ),
         filled: true,
-        fillColor: const Color(0xFFF4F4F4),
+        fillColor: Theme.of(context).colorScheme.tertiary,
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(4),
           borderSide: BorderSide.none,
@@ -60,7 +59,6 @@ class _DefaultTextFieldState extends State<DefaultTextField> {
       ),
       style: const TextStyle(
         fontSize: 16,
-        color: ThemeColors.primaryTextColor,
         fontWeight: FontWeight.normal,
       ),
       keyboardType: widget.keyboardType,

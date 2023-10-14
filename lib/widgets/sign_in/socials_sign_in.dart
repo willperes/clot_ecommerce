@@ -62,7 +62,7 @@ class _SocialButton extends StatelessWidget {
     return Ink(
       height: 50,
       decoration: BoxDecoration(
-        color: Color(0xFFF4F4F4),
+        color: Theme.of(context).colorScheme.tertiary,
         borderRadius: BorderRadius.circular(100),
       ),
       child: InkWell(
