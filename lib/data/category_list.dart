@@ -1,32 +1,40 @@
 import 'package:clot/models/category.dart';
+import 'package:clot/models/product.dart';
 
 List<Category> categoryList = [
   const Category(
+    name: "T-Shirts",
+    value: ProductCategory.tShirts,
+    image: "https://imgnike-a.akamaihd.net/1024x1024/0257660LA1.jpg",
+  ),
+  const Category(
     name: "Hoodies",
-    value: 0,
-    image: "https://images.unsplash.com/photo-1526476148966-98bd039463ea",
+    value: ProductCategory.hoodies,
+    image:
+        "https://static.nike.com/a/images/t_PDP_1728_v1/f_auto,q_auto:eco/717d1e8d-ba4f-4c52-8748-617d153aa5fe/sportswear-club-fleece-mens-printed-pullover-hoodie-xxTLfm.png",
   ),
   const Category(
     name: "Shorts",
-    value: 0,
-    image: "https://images.unsplash.com/photo-1598522325074-042db73aa4e6",
+    value: ProductCategory.shorts,
+    image:
+        "https://static.nike.com/a/images/t_PDP_1728_v1/f_auto,q_auto:eco/828996e0-56c4-47b5-8d37-c52f8bd9d6b8/yoga-mens-dri-fit-7-unlined-shorts-F1zFtr.png",
   ),
   const Category(
     name: "Shoes",
-    value: 0,
+    value: ProductCategory.shoes,
     image:
-        "https://static.nike.com/a/images/c_limit,w_592,f_auto/t_product_v1/5b0981ff-45f8-40c3-9372-32430a62aaea/dunk-high-shoes-n3vgBk.png",
+        "https://static.nike.com/a/images/t_PDP_1728_v1/f_auto,q_auto:eco,u_126ab356-44d8-4a06-89b4-fcdcc8df0245,c_scale,fl_relative,w_1.0,h_1.0,fl_layer_apply/367cf49f-1743-43c6-9e36-29470b6489c0/air-jordan-1-retro-high-og-mens-shoes-JHpxkn.png",
   ),
   const Category(
     name: "Bags",
-    value: 0,
+    value: ProductCategory.bags,
     image:
-        "https://discs9rajgk6v.cloudfront.net/Custom/Content/Products/37/62/3762_shoulder-bag-nike-heritage-grande-db0456-460-pr-16892-db0456-460_m1_638067882186370064.jpg",
+        "https://static.nike.com/a/images/t_PDP_1728_v1/f_auto,q_auto:eco/be96d44d-cbe6-4243-97c6-362107fa3cc2/sportswear-essentials-sling-bag-8l-8WLNgB.png",
   ),
   const Category(
     name: "Accessories",
-    value: 0,
+    value: ProductCategory.accessories,
     image:
-        "https://p.turbosquid.com/ts-thumb/3I/AaBT78/7Y/main/png/1613141787/600x600/fit_q87/c75cae552419405dc70c7b467a5008b6ae5c61d1/main.jpg",
+        "https://static.nike.com/a/images/t_PDP_1728_v1/f_auto,q_auto:eco/c365b399-e83a-41bf-8ea5-8ab37d2f4bc6/apex-reversible-bucket-hat-Rk0gv6.png",
   ),
 ];

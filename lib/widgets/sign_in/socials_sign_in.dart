@@ -66,9 +66,7 @@ class _SocialButton extends StatelessWidget {
         borderRadius: BorderRadius.circular(100),
       ),
       child: InkWell(
-        onTap: () {
-          print("Tapped");
-        },
+        onTap: () {},
         borderRadius: BorderRadius.circular(100),
         child: Padding(
           padding: const EdgeInsets.symmetric(

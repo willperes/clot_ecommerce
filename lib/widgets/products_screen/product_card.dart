@@ -9,16 +9,12 @@ class ProductCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final width = Constants.productCardHeight *
-        ((159 / Constants.productCardHeight) *
-            (390 / MediaQuery.of(context).size.width));
-
     return InkWell(
       onTap: () {},
       borderRadius: BorderRadius.circular(8),
       child: Ink(
         height: Constants.productCardHeight,
-        width: width,
+        width: MediaQuery.of(context).size.width * 0.4,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(8),
           color: Theme.of(context).colorScheme.tertiary,
@@ -49,14 +45,14 @@ class ProductCard extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
                     Text(
-                      product.name,
+                      product.title,
                       style: Theme.of(context).textTheme.headlineMedium,
                       overflow: TextOverflow.ellipsis,
                     ),
                     Padding(
                       padding: const EdgeInsets.only(top: 8),
                       child: Text(
-                        "\$${product.price}",
+                        "\$${product.price.toStringAsFixed(2)}",
                         style: Theme.of(context)
                             .textTheme
                             .headlineMedium

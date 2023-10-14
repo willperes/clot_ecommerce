@@ -109,10 +109,7 @@ class _ClickableText extends StatelessWidget {
             style: const TextStyle(
               fontWeight: FontWeight.bold,
             ),
-            recognizer: TapGestureRecognizer()
-              ..onTap = () {
-                print("Clicked");
-              },
+            recognizer: TapGestureRecognizer()..onTap = () {},
           ),
         ],
       ),

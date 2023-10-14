@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 class ThemeColors {
-  static const primaryTextColor = primaryInvertedColor;
   static final primarySwatch = MaterialColor(
     Colors.deepPurpleAccent.hashCode,
     const <int, Color>{
@@ -18,7 +17,4 @@ class ThemeColors {
     },
   );
   static final primaryColor = primarySwatch.shade500;
-  static const primaryInvertedColor = Color(0xFF272727);
-
-  static const backgroundColor = Colors.white;
 }

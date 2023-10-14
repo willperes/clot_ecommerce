@@ -1,135 +1,75 @@
+import 'package:clot/data/products_provider.dart';
+import 'package:clot/models/screen_arguments/products_screen_arguments.dart';
 import 'package:clot/theme/constants.dart';
-import 'package:clot/widgets/products_screen/categories.dart';
-import 'package:clot/widgets/products_screen/new_in_section.dart';
-import 'package:clot/widgets/products_screen/section_title.dart';
-import 'package:clot/widgets/products_screen/top_selling.dart';
+import 'package:clot/widgets/products_screen/product_card.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class ProductsScreen extends StatelessWidget {
-  const ProductsScreen({super.key});
-
   static const routeName = "products";
+
+  final ProductsScreenArguments arguments;
+
+  const ProductsScreen({super.key, required this.arguments});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SafeArea(
-        child: ListView(
-          children: [
-            const Padding(
-              padding: EdgeInsets.symmetric(
-                horizontal: Constants.screenPadding,
-              ),
-              child: Column(
-                children: [
-                  _Header(),
-                  SectionTitle(text: "Categories"),
-                  CategoriesSection(),
-                  SizedBox(
-                    height: Constants.screenPadding,
+      appBar: AppBar(),
+      body: Consumer<ProductsProvider>(
+        builder: (context, value, child) {
+          final category = value.categories
+              .firstWhere((element) => element.value == arguments.category);
+          final products = value.products
+              .where((product) => product.category == category.value)
+              .toList();
+
+          if (products.isEmpty) {
+            Navigator.of(context).pop();
+            return Container();
+          }
+
+          return Padding(
+            padding: const EdgeInsets.symmetric(
+              horizontal: Constants.screenPadding,
+            ),
+            child: CustomScrollView(
+              slivers: [
+                SliverToBoxAdapter(
+                  child: Text(
+                    "${category.name} (${products.length})",
+                    style: Theme.of(context).textTheme.displaySmall?.copyWith(
+                          fontWeight: FontWeight.bold,
+                        ),
                   ),
-                  SectionTitle(text: "Top Selling"),
-                ],
-              ),
+                ),
+                const SliverPadding(
+                  padding: EdgeInsets.only(
+                    top: Constants.screenPadding,
+                  ),
+                ),
+                SliverGrid.builder(
+                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 2,
+                    crossAxisSpacing: 20,
+                    mainAxisExtent: Constants.productCardHeight,
+                    mainAxisSpacing: 20,
+                  ),
+                  itemBuilder: (context, index) {
+                    return ProductCard(product: products[index]);
+                  },
+                  itemCount: products.length,
+                ),
+                const SliverPadding(
+                  padding: EdgeInsets.only(
+                    top: Constants.screenPadding,
+                  ),
+                ),
+              ],
             ),
-            const TopSellingSection(),
-            const SizedBox(
-              height: Constants.screenPadding,
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(
-                horizontal: Constants.screenPadding,
-              ),
-              child: SectionTitle(
-                text: "New In",
-                textColor: Theme.of(context).colorScheme.primary,
-              ),
-            ),
-            const NewInSection(),
-            const SizedBox(
-              height: Constants.screenPadding,
-            ),
-          ],
-        ),
+          );
+        },
       ),
-    );
-  }
-}
-
-class _Header extends StatelessWidget {
-  const _Header({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Container(
-              height: 40,
-              width: 40,
-              alignment: Alignment.center,
-              decoration: BoxDecoration(
-                color: Theme.of(context).colorScheme.tertiary,
-                borderRadius: BorderRadius.circular(100),
-              ),
-              child: Icon(
-                Icons.person,
-                color: Theme.of(context).colorScheme.onTertiary,
-              ),
-            ),
-            Container(
-              height: 40,
-              width: 40,
-              alignment: Alignment.center,
-              decoration: BoxDecoration(
-                color: Theme.of(context).colorScheme.primary,
-                borderRadius: BorderRadius.circular(100),
-              ),
-              child: Icon(
-                Icons.shopping_bag_outlined,
-                size: 20,
-                color: Theme.of(context).colorScheme.onPrimary,
-              ),
-            ),
-          ],
-        ),
-        Padding(
-          padding: const EdgeInsets.symmetric(
-            vertical: 24,
-          ),
-          child: Container(
-            height: 40,
-            decoration: BoxDecoration(
-              color: Theme.of(context).colorScheme.tertiary,
-              borderRadius: BorderRadius.circular(100),
-            ),
-            child: Padding(
-              padding: const EdgeInsets.symmetric(
-                horizontal: 20,
-              ),
-              child: Row(
-                children: [
-                  const Padding(
-                    padding: EdgeInsets.only(
-                      right: 12,
-                    ),
-                    child: Icon(
-                      Icons.search,
-                      size: 16,
-                    ),
-                  ),
-                  Text(
-                    "Search",
-                    style: Theme.of(context).textTheme.headlineMedium,
-                  ),
-                ],
-              ),
-            ),
-          ),
-        ),
-      ],
     );
   }
 }

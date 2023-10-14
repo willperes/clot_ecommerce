@@ -1,6 +1,8 @@
+import 'package:clot/models/product.dart';
+
 class Category {
   final String name;
-  final int value;
+  final ProductCategory value;
   final String image;
 
   const Category({
