@@ -1,4 +1,5 @@
 import 'package:clot/data/products_provider.dart';
+import 'package:clot/models/product.dart';
 import 'package:clot/theme/constants.dart';
 import 'package:clot/widgets/products_screen/product_card.dart';
 import 'package:flutter/material.dart';
@@ -34,6 +35,13 @@ class _NewInSectionState extends State<NewInSection> {
               ),
               scrollDirection: Axis.horizontal,
               itemBuilder: (context, index) {
+                if (value.isLoading) {
+                  return ProductCard(
+                    product: Product.empty(),
+                    isLoading: true,
+                  );
+                }
+
                 final product = list[index];
 
                 return ProductCard(product: product);
@@ -43,7 +51,7 @@ class _NewInSectionState extends State<NewInSection> {
                   width: 12,
                 );
               },
-              itemCount: list.length,
+              itemCount: value.isLoading ? 3 : list.length,
             );
           },
         ),

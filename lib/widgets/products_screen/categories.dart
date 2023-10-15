@@ -2,6 +2,7 @@ import 'package:clot/data/products_provider.dart';
 import 'package:clot/models/category.dart';
 import 'package:clot/models/screen_arguments/products_screen_arguments.dart';
 import 'package:clot/screens/products_screen.dart';
+import 'package:clot/widgets/skeleton.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -21,6 +22,10 @@ class _CategoriesSectionState extends State<CategoriesSection> {
       ),
       child: Consumer<ProductsProvider>(
         builder: (context, value, child) {
+          if (value.isLoading) {
+            return const _SkeletonCategories();
+          }
+
           return Row(
             mainAxisAlignment: value.categories.length >= 5
                 ? MainAxisAlignment.spaceBetween
@@ -38,10 +43,30 @@ class _CategoriesSectionState extends State<CategoriesSection> {
   }
 }
 
+class _SkeletonCategories extends StatelessWidget {
+  const _SkeletonCategories();
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [1, 2, 3, 4, 5]
+          .map(
+            (_) => _CategoryItem(
+              category: Category.empty(),
+              isLoading: true,
+            ),
+          )
+          .toList(),
+    );
+  }
+}
+
 class _CategoryItem extends StatelessWidget {
-  const _CategoryItem({required this.category});
+  const _CategoryItem({required this.category, this.isLoading = false});
 
   final Category category;
+  final bool isLoading;
 
   void onTap(BuildContext context) {
     Navigator.pushNamed(
@@ -64,21 +89,42 @@ class _CategoryItem extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            ClipRRect(
-              borderRadius: BorderRadius.circular(100),
-              child: Image.network(
-                category.image,
-                fit: BoxFit.cover,
-                height: 56,
-                width: 56,
-              ),
-            ),
+            isLoading
+                ? Skeleton(
+                    height: 56,
+                    width: 56,
+                    borderRadius: BorderRadius.circular(100),
+                  )
+                : ClipRRect(
+                    borderRadius: BorderRadius.circular(100),
+                    child: Image.network(
+                      category.image,
+                      fit: BoxFit.cover,
+                      height: 56,
+                      width: 56,
+                      loadingBuilder: (context, child, loadingProgress) {
+                        if (loadingProgress != null) {
+                          return Skeleton(
+                            height: 56,
+                            width: 56,
+                            borderRadius: BorderRadius.circular(100),
+                          );
+                        }
+
+                        return child;
+                      },
+                    ),
+                  ),
             const Spacer(),
-            Text(
-              category.title,
-              overflow: TextOverflow.ellipsis,
-              style: Theme.of(context).textTheme.headlineMedium,
-            )
+            isLoading
+                ? const Skeleton(
+                    child: Text("Loading"),
+                  )
+                : Text(
+                    category.title,
+                    overflow: TextOverflow.ellipsis,
+                    style: Theme.of(context).textTheme.headlineMedium,
+                  )
           ],
         ),
       ),

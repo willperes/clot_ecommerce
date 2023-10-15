@@ -30,4 +30,13 @@ class Product {
       categoryID: data["categoryID"],
     );
   }
+
+  factory Product.empty() => const Product(
+        title: "",
+        subtitle: "",
+        description: "",
+        images: [],
+        price: 0,
+        categoryID: 0,
+      );
 }

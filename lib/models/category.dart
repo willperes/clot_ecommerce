@@ -14,4 +14,10 @@ class Category {
         title: json["title"],
         image: json["image"],
       );
+
+  factory Category.empty() => const Category(
+        id: 0,
+        title: "",
+        image: "",
+      );
 }
