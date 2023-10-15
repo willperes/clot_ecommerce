@@ -19,9 +19,9 @@ class ProductsScreen extends StatelessWidget {
       body: Consumer<ProductsProvider>(
         builder: (context, value, child) {
           final category = value.categories
-              .firstWhere((element) => element.value == arguments.category);
+              .firstWhere((element) => element.id == arguments.category);
           final products = value.products
-              .where((product) => product.category == category.value)
+              .where((product) => product.categoryID == category.id)
               .toList();
 
           if (products.isEmpty) {
@@ -37,7 +37,7 @@ class ProductsScreen extends StatelessWidget {
               slivers: [
                 SliverToBoxAdapter(
                   child: Text(
-                    "${category.name} (${products.length})",
+                    "${category.title} (${products.length})",
                     style: Theme.of(context).textTheme.displaySmall?.copyWith(
                           fontWeight: FontWeight.bold,
                         ),

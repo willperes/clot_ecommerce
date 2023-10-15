@@ -1,7 +1,5 @@
-import 'package:clot/models/product.dart';
-
 class ProductsScreenArguments {
-  final ProductCategory category;
+  final int category;
 
   const ProductsScreenArguments({required this.category});
 }

@@ -63,7 +63,7 @@ class _CategoryCard extends StatelessWidget {
     Navigator.pushNamed(
       context,
       ProductsScreen.routeName,
-      arguments: ProductsScreenArguments(category: category.value),
+      arguments: ProductsScreenArguments(category: category.id),
     );
   }
 
@@ -101,7 +101,7 @@ class _CategoryCard extends StatelessWidget {
                   padding: const EdgeInsets.only(
                     left: 16,
                   ),
-                  child: Text(category.name,
+                  child: Text(category.title,
                       style: Theme.of(context).textTheme.displaySmall),
                 ),
               ],

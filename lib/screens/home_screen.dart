@@ -1,5 +1,7 @@
 import 'package:clot/data/products_provider.dart';
 import 'package:clot/screens/categories_screen.dart';
+import 'package:clot/screens/notifications_screen.dart';
+import 'package:clot/screens/orders_screen.dart';
 import 'package:clot/theme/constants.dart';
 import 'package:clot/widgets/bottom_navigation.dart';
 import 'package:clot/widgets/products_screen/categories.dart';
@@ -22,8 +24,8 @@ class _HomeScreenState extends State<HomeScreen> {
   int _currentIndex = 0;
   final screens = [
     const _HomeScreenContent(),
-    const _HomeScreenContent(),
-    const _HomeScreenContent(),
+    NotificationsScreen(),
+    OrdersScreen(),
     const _HomeScreenContent(),
   ];
 
@@ -40,7 +42,7 @@ class _HomeScreenState extends State<HomeScreen> {
       Provider.of<ProductsProvider>(
         context,
         listen: false,
-      ).getProducts();
+      ).getData();
     });
   }
 

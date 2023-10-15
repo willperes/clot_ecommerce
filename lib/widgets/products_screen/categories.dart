@@ -47,7 +47,7 @@ class _CategoryItem extends StatelessWidget {
     Navigator.pushNamed(
       context,
       ProductsScreen.routeName,
-      arguments: ProductsScreenArguments(category: category.value),
+      arguments: ProductsScreenArguments(category: category.id),
     );
   }
 
@@ -75,7 +75,7 @@ class _CategoryItem extends StatelessWidget {
             ),
             const Spacer(),
             Text(
-              category.name,
+              category.title,
               overflow: TextOverflow.ellipsis,
               style: Theme.of(context).textTheme.headlineMedium,
             )

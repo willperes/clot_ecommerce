@@ -1,24 +1,33 @@
 class Product {
   final String title;
-  final String subTitle;
-  final List<String> image;
+  final String subtitle;
+  final String description;
+  final List<String> images;
   final double price;
-  final ProductCategory category;
+  final int categoryID;
 
   const Product({
     required this.title,
-    required this.subTitle,
-    required this.image,
+    required this.subtitle,
+    required this.description,
+    required this.images,
     required this.price,
-    required this.category,
+    required this.categoryID,
   });
-}
 
-enum ProductCategory {
-  tShirts,
-  hoodies,
-  shorts,
-  shoes,
-  bags,
-  accessories,
+  factory Product.fromJson(Map<String, dynamic> data) {
+    final List<String> images = List<String>.from(data["images"]);
+    final double price = data["price"] is int
+        ? (data["price"] as int).toDouble()
+        : data["price"];
+
+    return Product(
+      title: data["title"],
+      subtitle: data["subtitle"],
+      description: data["description"],
+      images: images,
+      price: price,
+      categoryID: data["categoryID"],
+    );
+  }
 }

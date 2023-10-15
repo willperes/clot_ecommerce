@@ -1,13 +1,17 @@
-import 'package:clot/data/new_in_list.dart';
+import 'package:clot/data/products_provider.dart';
 import 'package:clot/theme/constants.dart';
 import 'package:clot/widgets/products_screen/product_card.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
-class NewInSection extends StatelessWidget {
+class NewInSection extends StatefulWidget {
   const NewInSection({super.key});
 
-  static final products = newInList;
+  @override
+  State<NewInSection> createState() => _NewInSectionState();
+}
 
+class _NewInSectionState extends State<NewInSection> {
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -16,22 +20,32 @@ class NewInSection extends StatelessWidget {
       ),
       child: SizedBox(
         height: Constants.productCardHeight,
-        child: ListView.separated(
-          padding: const EdgeInsets.symmetric(
-            horizontal: Constants.screenPadding,
-          ),
-          scrollDirection: Axis.horizontal,
-          itemBuilder: (context, index) {
-            final product = products[index];
+        child: Consumer<ProductsProvider>(
+          builder: (context, value, child) {
+            final list = value.newInProducts.sublist(
+                0,
+                value.newInProducts.length < 10
+                    ? value.newInProducts.length
+                    : 10);
 
-            return ProductCard(product: product);
-          },
-          separatorBuilder: (context, index) {
-            return const SizedBox(
-              width: 12,
+            return ListView.separated(
+              padding: const EdgeInsets.symmetric(
+                horizontal: Constants.screenPadding,
+              ),
+              scrollDirection: Axis.horizontal,
+              itemBuilder: (context, index) {
+                final product = list[index];
+
+                return ProductCard(product: product);
+              },
+              separatorBuilder: (context, index) {
+                return const SizedBox(
+                  width: 12,
+                );
+              },
+              itemCount: list.length,
             );
           },
-          itemCount: products.length,
         ),
       ),
     );
