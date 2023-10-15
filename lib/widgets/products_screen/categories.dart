@@ -4,6 +4,7 @@ import 'package:clot/models/screen_arguments/products_screen_arguments.dart';
 import 'package:clot/screens/products_screen.dart';
 import 'package:clot/widgets/skeleton.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 
 class CategoriesSection extends StatefulWidget {
@@ -83,16 +84,16 @@ class _CategoryItem extends StatelessWidget {
         onTap(context);
       },
       child: SizedBox(
-        height: 80,
-        width: 56,
+        height: 80.h,
+        width: 56.w,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             isLoading
                 ? Skeleton(
-                    height: 56,
-                    width: 56,
+                    height: 56.h,
+                    width: 56.w,
                     borderRadius: BorderRadius.circular(100),
                   )
                 : ClipRRect(
@@ -100,13 +101,13 @@ class _CategoryItem extends StatelessWidget {
                     child: Image.network(
                       category.image,
                       fit: BoxFit.cover,
-                      height: 56,
-                      width: 56,
+                      height: 56.h,
+                      width: 56.w,
                       loadingBuilder: (context, child, loadingProgress) {
                         if (loadingProgress != null) {
                           return Skeleton(
-                            height: 56,
-                            width: 56,
+                            height: 56.h,
+                            width: 56.w,
                             borderRadius: BorderRadius.circular(100),
                           );
                         }

@@ -49,7 +49,7 @@ class ProductsScreen extends StatelessWidget {
                   ),
                 ),
                 SliverGrid.builder(
-                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisCount: 2,
                     crossAxisSpacing: 20,
                     mainAxisExtent: Constants.productCardHeight,

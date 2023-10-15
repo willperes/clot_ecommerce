@@ -7,6 +7,7 @@ import 'package:clot/screens/sign_in_screens/sign_in_first_step_screen.dart';
 import 'package:clot/screens/sign_in_screens/sign_in_second_step_screen.dart';
 import 'package:clot/theme/theme.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 
 void main() {
@@ -32,30 +33,35 @@ class _ClotAppState extends State<ClotApp> {
       onTap: () {
         FocusManager.instance.primaryFocus?.unfocus();
       },
-      child: MaterialApp(
-        title: 'Clot',
-        theme: AppTheme().getTheme("light"),
-        darkTheme: AppTheme().getTheme("dark"),
-        initialRoute: HomeScreen.routeName,
-        routes: {
-          SignInFirstStepScreen.routeName: (context) =>
-              const SignInFirstStepScreen(),
-          SignInSecondStepScreen.routeName: (context) =>
-              const SignInSecondStepScreen(),
-          HomeScreen.routeName: (context) => const HomeScreen(),
-          CategoriesScreen.routeName: (context) => CategoriesScreen(),
-        },
-        onGenerateRoute: (settings) {
-          if (settings.name == ProductsScreen.routeName) {
-            final arguments = settings.arguments as ProductsScreenArguments;
-            return MaterialPageRoute(
-              builder: (context) {
-                return ProductsScreen(arguments: arguments);
-              },
-            );
-          }
+      child: ScreenUtilInit(
+        designSize: const Size(390, 844),
+        builder: (context, child) {
+          return MaterialApp(
+            title: 'Clot',
+            theme: AppTheme().getTheme("light"),
+            darkTheme: AppTheme().getTheme("dark"),
+            initialRoute: HomeScreen.routeName,
+            routes: {
+              SignInFirstStepScreen.routeName: (context) =>
+                  const SignInFirstStepScreen(),
+              SignInSecondStepScreen.routeName: (context) =>
+                  const SignInSecondStepScreen(),
+              HomeScreen.routeName: (context) => const HomeScreen(),
+              CategoriesScreen.routeName: (context) => CategoriesScreen(),
+            },
+            onGenerateRoute: (settings) {
+              if (settings.name == ProductsScreen.routeName) {
+                final arguments = settings.arguments as ProductsScreenArguments;
+                return MaterialPageRoute(
+                  builder: (context) {
+                    return ProductsScreen(arguments: arguments);
+                  },
+                );
+              }
 
-          return null;
+              return null;
+            },
+          );
         },
       ),
     );

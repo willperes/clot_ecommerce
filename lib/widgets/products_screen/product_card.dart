@@ -2,6 +2,7 @@ import 'package:clot/models/product.dart';
 import 'package:clot/theme/constants.dart';
 import 'package:clot/widgets/skeleton.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class ProductCard extends StatelessWidget {
   const ProductCard({super.key, required this.product, this.isLoading = false});
@@ -11,7 +12,7 @@ class ProductCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final cardWidth = MediaQuery.of(context).size.width * 0.4;
+    final cardWidth = 159.0.w;
 
     return Stack(
       children: [
@@ -26,10 +27,10 @@ class ProductCard extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               isLoading
-                  ? const Skeleton(
+                  ? Skeleton(
                       height: Constants.productCardHeight * 0.78,
                       width: double.infinity,
-                      borderRadius: BorderRadius.only(
+                      borderRadius: const BorderRadius.only(
                         topLeft: Radius.circular(8),
                         topRight: Radius.circular(8),
                       ),
@@ -45,7 +46,7 @@ class ProductCard extends StatelessWidget {
                         fit: BoxFit.cover,
                         loadingBuilder: (context, child, loadingProgress) {
                           if (loadingProgress != null) {
-                            return const Skeleton(
+                            return Skeleton(
                               height: Constants.productCardHeight * 0.78,
                               width: double.infinity,
                             );
