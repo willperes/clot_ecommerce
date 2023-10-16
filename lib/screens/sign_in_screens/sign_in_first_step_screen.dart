@@ -1,8 +1,10 @@
 import 'package:clot/screens/sign_in_screens/sign_in_second_step_screen.dart';
+import 'package:clot/theme/constants.dart';
 import 'package:clot/widgets/default_text_form_field.dart';
 import 'package:clot/widgets/sign_in/socials_sign_in.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class SignInFirstStepScreen extends StatefulWidget {
   const SignInFirstStepScreen({super.key});
@@ -32,7 +34,8 @@ class _SignInFirstStepScreenState extends State<SignInFirstStepScreen> {
     return Scaffold(
       appBar: AppBar(),
       body: ListView(
-        padding: const EdgeInsets.fromLTRB(24, 0, 24, 24),
+        padding: const EdgeInsets.fromLTRB(Constants.screenPadding, 0,
+            Constants.screenPadding, Constants.screenPadding),
         children: [
           Text(
             "Sign In",
@@ -41,7 +44,7 @@ class _SignInFirstStepScreenState extends State<SignInFirstStepScreen> {
                   fontWeight: FontWeight.bold,
                 ),
           ),
-          const SizedBox(height: 32),
+          SizedBox(height: 32.h),
           Form(
             key: _formKey,
             child: Column(

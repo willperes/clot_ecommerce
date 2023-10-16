@@ -1,6 +1,7 @@
 import 'package:clot/screens/categories_screen.dart';
 import 'package:clot/theme/constants.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 
 class NotificationsScreen extends StatelessWidget {
@@ -37,7 +38,7 @@ class _NoNotificationsContent extends StatelessWidget {
           ),
           const SizedBox(height: Constants.screenPadding),
           SizedBox(
-            width: 192,
+            width: 192.w,
             child: TextButton(
               onPressed: () {
                 Navigator.pushNamed(context, CategoriesScreen.routeName);

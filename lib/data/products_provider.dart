@@ -39,4 +39,14 @@ class ProductsProvider extends ChangeNotifier {
     _isLoading = false;
     notifyListeners();
   }
+
+  List<Product> getByCategoryID(int categoryID) {
+    final category =
+        _categories.firstWhere((category) => category.id == categoryID);
+    final products = _products
+        .where((product) => product.categoryID == category.id)
+        .toList();
+
+    return products;
+  }
 }

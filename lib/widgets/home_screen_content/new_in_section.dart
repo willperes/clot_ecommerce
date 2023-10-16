@@ -1,16 +1,19 @@
 import 'package:clot/data/products_provider.dart';
-import 'package:clot/data/top_selling_list.dart';
 import 'package:clot/models/product.dart';
 import 'package:clot/theme/constants.dart';
-import 'package:clot/widgets/products_screen/product_card.dart';
+import 'package:clot/widgets/home_screen_content/product_card.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 
-class TopSellingSection extends StatelessWidget {
-  const TopSellingSection({super.key});
+class NewInSection extends StatefulWidget {
+  const NewInSection({super.key});
 
-  static final products = topSellingList;
+  @override
+  State<NewInSection> createState() => _NewInSectionState();
+}
 
+class _NewInSectionState extends State<NewInSection> {
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -21,10 +24,10 @@ class TopSellingSection extends StatelessWidget {
         height: Constants.productCardHeight,
         child: Consumer<ProductsProvider>(
           builder: (context, value, child) {
-            final list = value.topSellingProducts.sublist(
+            final list = value.newInProducts.sublist(
                 0,
-                value.topSellingProducts.length < 10
-                    ? value.topSellingProducts.length
+                value.newInProducts.length < 10
+                    ? value.newInProducts.length
                     : 10);
 
             return ListView.separated(
@@ -45,8 +48,8 @@ class TopSellingSection extends StatelessWidget {
                 return ProductCard(product: product);
               },
               separatorBuilder: (context, index) {
-                return const SizedBox(
-                  width: 12,
+                return SizedBox(
+                  width: 12.w,
                 );
               },
               itemCount: value.isLoading ? 3 : list.length,

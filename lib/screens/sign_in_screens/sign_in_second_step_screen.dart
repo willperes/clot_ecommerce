@@ -1,8 +1,10 @@
 import 'package:clot/screens/home_screen.dart';
+import 'package:clot/theme/constants.dart';
 import 'package:clot/widgets/default_back_button.dart';
 import 'package:clot/widgets/default_text_form_field.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class SignInSecondStepScreen extends StatefulWidget {
   const SignInSecondStepScreen({super.key});
@@ -36,7 +38,8 @@ class _SignInSecondStepScreenState extends State<SignInSecondStepScreen> {
         leading: const DefaultBackButton(),
       ),
       body: ListView(
-        padding: const EdgeInsets.fromLTRB(24, 0, 24, 24),
+        padding: const EdgeInsets.fromLTRB(Constants.screenPadding, 0,
+            Constants.screenPadding, Constants.screenPadding),
         children: [
           Text(
             "Sign In",
@@ -45,7 +48,7 @@ class _SignInSecondStepScreenState extends State<SignInSecondStepScreen> {
                   fontWeight: FontWeight.bold,
                 ),
           ),
-          const SizedBox(height: 32),
+          SizedBox(height: 32.h),
           Form(
             key: _formKey,
             child: Column(

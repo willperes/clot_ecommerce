@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class DefaultTextField extends StatefulWidget {
   const DefaultTextField(
@@ -57,8 +58,8 @@ class _DefaultTextFieldState extends State<DefaultTextField> {
           borderSide: BorderSide.none,
         ),
       ),
-      style: const TextStyle(
-        fontSize: 16,
+      style: TextStyle(
+        fontSize: 16.sp,
         fontWeight: FontWeight.normal,
       ),
       keyboardType: widget.keyboardType,

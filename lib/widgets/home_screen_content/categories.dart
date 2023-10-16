@@ -70,10 +70,15 @@ class _CategoryItem extends StatelessWidget {
   final bool isLoading;
 
   void onTap(BuildContext context) {
+    final products = Provider.of<ProductsProvider>(context, listen: false)
+        .getByCategoryID(category.id);
     Navigator.pushNamed(
       context,
       ProductsScreen.routeName,
-      arguments: ProductsScreenArguments(category: category.id),
+      arguments: ProductsScreenArguments(
+        title: category.title,
+        products: products,
+      ),
     );
   }
 

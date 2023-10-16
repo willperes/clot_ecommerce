@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class SocialsSignIn extends StatelessWidget {
   const SocialsSignIn({super.key});
@@ -46,9 +47,9 @@ class _SocialButton extends StatelessWidget {
     final Widget icon = (() {
       switch (iconValue) {
         case "Apple":
-          return const Icon(Icons.apple, size: 24);
+          return Icon(Icons.apple, size: 24.r);
         case "Facebook":
-          return const Icon(Icons.facebook, size: 24);
+          return Icon(Icons.facebook, size: 24.r);
         case "Google":
           return Padding(
             padding: const EdgeInsets.only(left: 2),
@@ -82,9 +83,9 @@ class _SocialButton extends StatelessWidget {
                   fontWeight: FontWeight.w500,
                 ),
               ),
-              const SizedBox(
-                height: 25,
-                width: 25,
+              SizedBox(
+                height: 25.h,
+                width: 25.w,
               )
             ],
           ),

@@ -4,7 +4,9 @@ import 'package:clot/models/category.dart';
 import 'package:clot/models/screen_arguments/products_screen_arguments.dart';
 import 'package:clot/screens/products_screen.dart';
 import 'package:clot/theme/constants.dart';
+import 'package:clot/widgets/skeleton.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 
 class CategoriesScreen extends StatelessWidget {
@@ -60,10 +62,15 @@ class _CategoryCard extends StatelessWidget {
   final Category category;
 
   void onTap(BuildContext context) {
+    final products = Provider.of<ProductsProvider>(context, listen: false)
+        .getByCategoryID(category.id);
     Navigator.pushNamed(
       context,
       ProductsScreen.routeName,
-      arguments: ProductsScreenArguments(category: category.id),
+      arguments: ProductsScreenArguments(
+        title: category.title,
+        products: products,
+      ),
     );
   }
 
@@ -77,7 +84,7 @@ class _CategoryCard extends StatelessWidget {
         },
         borderRadius: BorderRadius.circular(8),
         child: Ink(
-          height: 64,
+          height: 64.h,
           decoration: BoxDecoration(
             color: Theme.of(context).colorScheme.tertiary,
             borderRadius: BorderRadius.circular(8),
@@ -92,17 +99,30 @@ class _CategoryCard extends StatelessWidget {
                   borderRadius: BorderRadius.circular(100),
                   child: Image.network(
                     category.image,
-                    height: 40,
-                    width: 40,
+                    height: 40.h,
+                    width: 40.w,
                     fit: BoxFit.cover,
+                    loadingBuilder: (context, child, loadingProgress) {
+                      if (loadingProgress != null) {
+                        return Skeleton(
+                          height: 40.h,
+                          width: 40.w,
+                          borderRadius: BorderRadius.circular(100),
+                        );
+                      }
+
+                      return child;
+                    },
                   ),
                 ),
                 Padding(
                   padding: const EdgeInsets.only(
                     left: 16,
                   ),
-                  child: Text(category.title,
-                      style: Theme.of(context).textTheme.displaySmall),
+                  child: Text(
+                    category.title,
+                    style: Theme.of(context).textTheme.displaySmall,
+                  ),
                 ),
               ],
             ),

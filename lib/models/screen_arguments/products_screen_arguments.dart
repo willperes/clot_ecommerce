@@ -1,5 +1,8 @@
-class ProductsScreenArguments {
-  final int category;
+import 'package:clot/models/product.dart';
 
-  const ProductsScreenArguments({required this.category});
+class ProductsScreenArguments {
+  final String title;
+  final List<Product> products;
+
+  const ProductsScreenArguments({required this.title, required this.products});
 }

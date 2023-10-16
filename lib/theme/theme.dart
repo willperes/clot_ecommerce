@@ -1,5 +1,6 @@
 import 'package:clot/theme/theme_colors.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class AppTheme {
   static const _fontFamily = "Inter";
@@ -46,7 +47,7 @@ class AppTheme {
         backgroundColor: colorScheme.background,
         foregroundColor: colorScheme.onBackground,
         titleTextStyle: TextStyle(
-          fontSize: 16,
+          fontSize: 16.sp,
           fontWeight: FontWeight.bold,
           color: colorScheme.onBackground,
         ),
@@ -68,22 +69,22 @@ class AppTheme {
       textTheme: TextTheme(
         displayLarge: TextStyle(
           // H1
-          fontSize: 32,
+          fontSize: 32.sp,
           color: colorScheme.onSurface,
         ),
         displayMedium: TextStyle(
           // H2
-          fontSize: 24,
+          fontSize: 24.sp,
           color: colorScheme.onSurface,
         ),
         displaySmall: TextStyle(
           // H3
-          fontSize: 16,
+          fontSize: 16.sp,
           color: colorScheme.onSurface,
         ),
         headlineMedium: TextStyle(
           // H4
-          fontSize: 12,
+          fontSize: 12.sp,
           color: colorScheme.onSurface,
         ),
       ),
@@ -92,10 +93,10 @@ class AppTheme {
           padding: const MaterialStatePropertyAll(
             EdgeInsets.zero,
           ),
-          minimumSize: const MaterialStatePropertyAll(
+          minimumSize: MaterialStatePropertyAll(
             Size(
-              50,
-              50,
+              50.w,
+              50.h,
             ),
           ),
           backgroundColor: MaterialStatePropertyAll(colorScheme.primary),

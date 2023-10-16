@@ -1,14 +1,17 @@
 import 'package:clot/data/products_provider.dart';
+import 'package:clot/models/screen_arguments/products_screen_arguments.dart';
 import 'package:clot/screens/categories_screen.dart';
 import 'package:clot/screens/notifications_screen.dart';
 import 'package:clot/screens/orders_screen.dart';
+import 'package:clot/screens/products_screen.dart';
 import 'package:clot/theme/constants.dart';
 import 'package:clot/widgets/bottom_navigation.dart';
-import 'package:clot/widgets/products_screen/categories.dart';
-import 'package:clot/widgets/products_screen/new_in_section.dart';
-import 'package:clot/widgets/products_screen/section_title.dart';
-import 'package:clot/widgets/products_screen/top_selling.dart';
+import 'package:clot/widgets/home_screen_content/categories.dart';
+import 'package:clot/widgets/home_screen_content/new_in_section.dart';
+import 'package:clot/widgets/home_screen_content/section_title.dart';
+import 'package:clot/widgets/home_screen_content/top_selling.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -70,6 +73,32 @@ class _HomeScreenContent extends StatelessWidget {
       Navigator.pushNamed(context, CategoriesScreen.routeName);
     }
 
+    void onTopSellingTap() {
+      final products = Provider.of<ProductsProvider>(context, listen: false)
+          .topSellingProducts;
+      Navigator.pushNamed(
+        context,
+        ProductsScreen.routeName,
+        arguments: ProductsScreenArguments(
+          title: "Top Selling",
+          products: products,
+        ),
+      );
+    }
+
+    void onNewInTap() {
+      final products =
+          Provider.of<ProductsProvider>(context, listen: false).newInProducts;
+      Navigator.pushNamed(
+        context,
+        ProductsScreen.routeName,
+        arguments: ProductsScreenArguments(
+          title: "New In",
+          products: products,
+        ),
+      );
+    }
+
     return Scaffold(
       body: SafeArea(
         child: ListView(
@@ -89,8 +118,9 @@ class _HomeScreenContent extends StatelessWidget {
                   const SizedBox(
                     height: Constants.screenPadding,
                   ),
-                  const SectionTitle(
+                  SectionTitle(
                     text: "Top Selling",
+                    onTap: onTopSellingTap,
                   ),
                 ],
               ),
@@ -106,6 +136,7 @@ class _HomeScreenContent extends StatelessWidget {
               child: SectionTitle(
                 text: "New In",
                 textColor: Theme.of(context).colorScheme.primary,
+                onTap: onNewInTap,
               ),
             ),
             const NewInSection(),
@@ -130,8 +161,8 @@ class _Header extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Container(
-              height: 40,
-              width: 40,
+              height: 40.h,
+              width: 40.w,
               alignment: Alignment.center,
               decoration: BoxDecoration(
                 color: Theme.of(context).colorScheme.tertiary,
@@ -143,8 +174,8 @@ class _Header extends StatelessWidget {
               ),
             ),
             Container(
-              height: 40,
-              width: 40,
+              height: 40.h,
+              width: 40.w,
               alignment: Alignment.center,
               decoration: BoxDecoration(
                 color: Theme.of(context).colorScheme.primary,
@@ -152,7 +183,7 @@ class _Header extends StatelessWidget {
               ),
               child: Icon(
                 Icons.shopping_bag_outlined,
-                size: 20,
+                size: 20.r,
                 color: Theme.of(context).colorScheme.onPrimary,
               ),
             ),
@@ -163,7 +194,7 @@ class _Header extends StatelessWidget {
             vertical: 24,
           ),
           child: Container(
-            height: 40,
+            height: 40.h,
             decoration: BoxDecoration(
               color: Theme.of(context).colorScheme.tertiary,
               borderRadius: BorderRadius.circular(100),
