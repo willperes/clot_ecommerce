@@ -1,4 +1,6 @@
 import 'package:clot/models/product.dart';
+import 'package:clot/models/screen_arguments/product_details_screen_arguments.dart';
+import 'package:clot/screens/product_details_screen.dart';
 import 'package:clot/theme/constants.dart';
 import 'package:clot/widgets/skeleton.dart';
 import 'package:flutter/material.dart';
@@ -13,6 +15,16 @@ class ProductCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final cardWidth = 159.0.w;
+
+    void onTap() {
+      Navigator.pushNamed(
+        context,
+        ProductDetailsScreen.routeName,
+        arguments: ProductDetailsScreenArguments(
+          product: product,
+        ),
+      );
+    }
 
     return Stack(
       children: [
@@ -104,10 +116,37 @@ class ProductCard extends StatelessWidget {
             color: Colors.transparent,
             child: InkWell(
               borderRadius: BorderRadius.circular(8),
-              onTap: () {},
+              onTap: () {
+                onTap();
+              },
             ),
           ),
         ),
+        !isLoading
+            ? Positioned(
+                top: 5.r,
+                right: 8.r,
+                child: Material(
+                  color: Colors.transparent,
+                  child: InkWell(
+                    borderRadius: BorderRadius.circular(100),
+                    onTap: () {
+                      print("Favorited");
+                    },
+                    child: Container(
+                      alignment: Alignment.center,
+                      height: 24.r,
+                      width: 24.r,
+                      child: Icon(
+                        Icons.favorite_outline,
+                        size: 16,
+                        color: Theme.of(context).colorScheme.onBackground,
+                      ),
+                    ),
+                  ),
+                ),
+              )
+            : Container(),
       ],
     );
   }

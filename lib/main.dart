@@ -1,7 +1,9 @@
 import 'package:clot/data/products_provider.dart';
+import 'package:clot/models/screen_arguments/product_details_screen_arguments.dart';
 import 'package:clot/models/screen_arguments/products_screen_arguments.dart';
 import 'package:clot/screens/categories_screen.dart';
 import 'package:clot/screens/home_screen.dart';
+import 'package:clot/screens/product_details_screen.dart';
 import 'package:clot/screens/products_screen.dart';
 import 'package:clot/screens/sign_in_screens/sign_in_first_step_screen.dart';
 import 'package:clot/screens/sign_in_screens/sign_in_second_step_screen.dart';
@@ -41,13 +43,14 @@ class _ClotAppState extends State<ClotApp> {
             theme: AppTheme().getTheme("light"),
             darkTheme: AppTheme().getTheme("dark"),
             initialRoute: HomeScreen.routeName,
+            navigatorObservers: [HeroController()],
             routes: {
               SignInFirstStepScreen.routeName: (context) =>
                   const SignInFirstStepScreen(),
               SignInSecondStepScreen.routeName: (context) =>
                   const SignInSecondStepScreen(),
               HomeScreen.routeName: (context) => const HomeScreen(),
-              CategoriesScreen.routeName: (context) => CategoriesScreen(),
+              CategoriesScreen.routeName: (context) => const CategoriesScreen(),
             },
             onGenerateRoute: (settings) {
               if (settings.name == ProductsScreen.routeName) {
@@ -55,6 +58,16 @@ class _ClotAppState extends State<ClotApp> {
                 return MaterialPageRoute(
                   builder: (context) {
                     return ProductsScreen(arguments: arguments);
+                  },
+                );
+              }
+
+              if (settings.name == ProductDetailsScreen.routeName) {
+                final arguments =
+                    settings.arguments as ProductDetailsScreenArguments;
+                return MaterialPageRoute(
+                  builder: (context) {
+                    return ProductDetailsScreen(arguments: arguments);
                   },
                 );
               }

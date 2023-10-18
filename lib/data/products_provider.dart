@@ -20,7 +20,7 @@ class ProductsProvider extends ChangeNotifier {
   List<Product> get topSellingProducts => _topSellingProducts;
   List<Product> get newInProducts => _newInProducts;
 
-  void getData() async {
+  Future<void> getData() async {
     _isLoading = true;
     notifyListeners();
     final data = await _productService.getAll();

@@ -1,5 +1,4 @@
 import 'package:clot/data/products_provider.dart';
-import 'package:clot/data/top_selling_list.dart';
 import 'package:clot/models/product.dart';
 import 'package:clot/theme/constants.dart';
 import 'package:clot/widgets/home_screen_content/product_card.dart';
@@ -9,8 +8,6 @@ import 'package:provider/provider.dart';
 
 class TopSellingSection extends StatelessWidget {
   const TopSellingSection({super.key});
-
-  static final products = topSellingList;
 
   @override
   Widget build(BuildContext context) {

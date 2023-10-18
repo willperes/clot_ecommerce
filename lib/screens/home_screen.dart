@@ -101,49 +101,55 @@ class _HomeScreenContent extends StatelessWidget {
 
     return Scaffold(
       body: SafeArea(
-        child: ListView(
-          children: [
-            Padding(
-              padding: const EdgeInsets.symmetric(
-                horizontal: Constants.screenPadding,
+        child: RefreshIndicator(
+          onRefresh: () {
+            return Provider.of<ProductsProvider>(context, listen: false)
+                .getData();
+          },
+          child: ListView(
+            children: [
+              Padding(
+                padding: const EdgeInsets.symmetric(
+                  horizontal: Constants.screenPadding,
+                ),
+                child: Column(
+                  children: [
+                    const _Header(),
+                    SectionTitle(
+                      text: "Categories",
+                      onTap: onCategoriesTap,
+                    ),
+                    const CategoriesSection(),
+                    const SizedBox(
+                      height: Constants.screenPadding,
+                    ),
+                    SectionTitle(
+                      text: "Top Selling",
+                      onTap: onTopSellingTap,
+                    ),
+                  ],
+                ),
               ),
-              child: Column(
-                children: [
-                  const _Header(),
-                  SectionTitle(
-                    text: "Categories",
-                    onTap: onCategoriesTap,
-                  ),
-                  const CategoriesSection(),
-                  const SizedBox(
-                    height: Constants.screenPadding,
-                  ),
-                  SectionTitle(
-                    text: "Top Selling",
-                    onTap: onTopSellingTap,
-                  ),
-                ],
+              const TopSellingSection(),
+              const SizedBox(
+                height: Constants.screenPadding,
               ),
-            ),
-            const TopSellingSection(),
-            const SizedBox(
-              height: Constants.screenPadding,
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(
-                horizontal: Constants.screenPadding,
+              Padding(
+                padding: const EdgeInsets.symmetric(
+                  horizontal: Constants.screenPadding,
+                ),
+                child: SectionTitle(
+                  text: "New In",
+                  textColor: Theme.of(context).colorScheme.primary,
+                  onTap: onNewInTap,
+                ),
               ),
-              child: SectionTitle(
-                text: "New In",
-                textColor: Theme.of(context).colorScheme.primary,
-                onTap: onNewInTap,
+              const NewInSection(),
+              const SizedBox(
+                height: Constants.screenPadding,
               ),
-            ),
-            const NewInSection(),
-            const SizedBox(
-              height: Constants.screenPadding,
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );

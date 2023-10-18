@@ -1,4 +1,3 @@
-import 'package:clot/data/category_list.dart';
 import 'package:clot/data/products_provider.dart';
 import 'package:clot/models/category.dart';
 import 'package:clot/models/screen_arguments/products_screen_arguments.dart';
@@ -10,11 +9,9 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 
 class CategoriesScreen extends StatelessWidget {
-  CategoriesScreen({super.key});
+  const CategoriesScreen({super.key});
 
   static const routeName = "categories";
-  final list = categoryList;
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
