@@ -1,7 +1,6 @@
 import 'package:clot/screens/categories_screen.dart';
-import 'package:clot/theme/constants.dart';
+import 'package:clot/widgets/empty_screen_placeholder.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 
 class NotificationsScreen extends StatelessWidget {
@@ -25,29 +24,13 @@ class _NoNotificationsContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      alignment: Alignment.center,
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          SvgPicture.asset("assets/images/notification_screen.svg"),
-          const SizedBox(height: Constants.screenPadding),
-          Text(
-            "No notifications yet",
-            style: Theme.of(context).textTheme.displayMedium,
-          ),
-          const SizedBox(height: Constants.screenPadding),
-          SizedBox(
-            width: 192.w,
-            child: TextButton(
-              onPressed: () {
-                Navigator.pushNamed(context, CategoriesScreen.routeName);
-              },
-              child: const Text("Explore Categories"),
-            ),
-          )
-        ],
-      ),
-    );
+    return EmptyScreenPlaceholder(
+        image: SvgPicture.asset('assets/images/notification_screen.svg'),
+        text: 'No notifications yet',
+        buttonText: 'Explore Categories',
+        onPressed: () {
+          Navigator.of(context)
+              .pushReplacementNamed(CategoriesScreen.routeName);
+        });
   }
 }

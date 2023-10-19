@@ -1,5 +1,6 @@
 import 'package:clot/data/products_provider.dart';
 import 'package:clot/models/screen_arguments/products_screen_arguments.dart';
+import 'package:clot/screens/cart_screen.dart';
 import 'package:clot/screens/categories_screen.dart';
 import 'package:clot/screens/notifications_screen.dart';
 import 'package:clot/screens/orders_screen.dart';
@@ -180,18 +181,26 @@ class _Header extends StatelessWidget {
                 color: Theme.of(context).colorScheme.onTertiary,
               ),
             ),
-            Container(
-              height: 40.h,
-              width: 40.w,
-              alignment: Alignment.center,
-              decoration: BoxDecoration(
-                color: Theme.of(context).colorScheme.primary,
-                borderRadius: BorderRadius.circular(100),
-              ),
-              child: Icon(
-                Icons.shopping_bag_outlined,
-                size: 20.r,
-                color: Theme.of(context).colorScheme.onPrimary,
+            InkWell(
+              borderRadius: BorderRadius.circular(100),
+              onTap: () {
+                Navigator.of(context).pushNamed(CartScreen.routeName);
+              },
+              child: Ink(
+                height: 40.h,
+                width: 40.w,
+                decoration: BoxDecoration(
+                  color: Theme.of(context).colorScheme.primary,
+                  borderRadius: BorderRadius.circular(100),
+                ),
+                child: Container(
+                  alignment: Alignment.center,
+                  child: Icon(
+                    Icons.shopping_bag_outlined,
+                    size: 20.r,
+                    color: Theme.of(context).colorScheme.onPrimary,
+                  ),
+                ),
               ),
             ),
           ],

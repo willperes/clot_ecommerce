@@ -4,6 +4,7 @@ import 'package:clot/screens/categories_screen.dart';
 import 'package:clot/theme/constants.dart';
 import 'package:clot/utils/debouncer.dart';
 import 'package:clot/widgets/default_back_button.dart';
+import 'package:clot/widgets/empty_screen_placeholder.dart';
 import 'package:clot/widgets/product_grid.dart';
 import 'package:clot/widgets/search_bar.dart';
 import 'package:flutter/material.dart';
@@ -118,41 +119,17 @@ class __ProductSearchScreenStateState extends State<ProductSearchScreen> {
 }
 
 class _NoResults extends StatelessWidget {
-  const _NoResults({super.key});
+  const _NoResults();
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(Constants.screenPadding),
-      child: Container(
-        alignment: Alignment.center,
-        color: Theme.of(context).colorScheme.background,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            SvgPicture.asset('assets/images/search.svg'),
-            const SizedBox(height: Constants.screenPadding),
-            Text(
-              "Sorry, we couldn't find any matching result for your Search.",
-              textAlign: TextAlign.center,
-              style: Theme.of(context).textTheme.displayMedium,
-            ),
-            const SizedBox(height: Constants.screenPadding),
-            SizedBox(
-              width: 192.w,
-              child: TextButton(
-                onPressed: () {
-                  Navigator.pushReplacementNamed(
-                    context,
-                    CategoriesScreen.routeName,
-                  );
-                },
-                child: const Text("Explore Categories"),
-              ),
-            )
-          ],
-        ),
-      ),
-    );
+    return EmptyScreenPlaceholder(
+        image: SvgPicture.asset('assets/images/search.svg'),
+        text: 'Sorry, we couldn\'t find any matching result for your search.',
+        buttonText: 'Explore Categories',
+        onPressed: () {
+          Navigator.of(context)
+              .pushReplacementNamed(CategoriesScreen.routeName);
+        });
   }
 }
