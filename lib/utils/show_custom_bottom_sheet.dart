@@ -1,10 +1,13 @@
 import 'package:clot/theme/constants.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-showModalBottomSheetList(
-    {required String title,
-    required BuildContext context,
-    required SliverList list}) {
+showModalBottomSheetList({
+  required String title,
+  required BuildContext context,
+  required SliverList list,
+  Widget? leading,
+}) {
   return showModalBottomSheet(
     showDragHandle: true,
     backgroundColor: Theme.of(context).colorScheme.background,
@@ -24,12 +27,39 @@ showModalBottomSheetList(
             SliverPadding(
               padding: const EdgeInsets.only(bottom: 24),
               sliver: SliverToBoxAdapter(
-                child: Text(
-                  title,
-                  textAlign: TextAlign.center,
-                  style: Theme.of(context).textTheme.displayMedium?.copyWith(
-                        fontWeight: FontWeight.bold,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    leading ??
+                        Container(
+                          height: 40.r,
+                          width: 40.r,
+                        ),
+                    Text(
+                      title,
+                      textAlign: TextAlign.center,
+                      style:
+                          Theme.of(context).textTheme.displayMedium?.copyWith(
+                                fontWeight: FontWeight.bold,
+                              ),
+                    ),
+                    InkWell(
+                      borderRadius: BorderRadius.circular(100),
+                      onTap: () {
+                        Navigator.of(context).pop();
+                      },
+                      child: Ink(
+                        height: 40.r,
+                        width: 40.r,
+                        child: const Center(
+                          child: Icon(
+                            Icons.close,
+                            size: 24,
+                          ),
+                        ),
                       ),
+                    ),
+                  ],
                 ),
               ),
             ),

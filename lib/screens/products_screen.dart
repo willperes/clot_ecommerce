@@ -1,7 +1,8 @@
 import 'package:clot/data/products_provider.dart';
 import 'package:clot/models/screen_arguments/products_screen_arguments.dart';
 import 'package:clot/theme/constants.dart';
-import 'package:clot/widgets/home_screen_content/product_card.dart';
+import 'package:clot/widgets/default_back_button.dart';
+import 'package:clot/widgets/product_grid.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -15,7 +16,9 @@ class ProductsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(
+        leading: const DefaultBackButton(),
+      ),
       body: Consumer<ProductsProvider>(
         builder: (context, value, child) {
           if (arguments.products.isEmpty) {
@@ -42,17 +45,8 @@ class ProductsScreen extends StatelessWidget {
                     top: Constants.screenPadding,
                   ),
                 ),
-                SliverGrid.builder(
-                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 2,
-                    crossAxisSpacing: 20,
-                    mainAxisExtent: Constants.productCardHeight,
-                    mainAxisSpacing: 20,
-                  ),
-                  itemBuilder: (context, index) {
-                    return ProductCard(product: arguments.products[index]);
-                  },
-                  itemCount: arguments.products.length,
+                ProductGrid(
+                  products: arguments.products,
                 ),
                 const SliverPadding(
                   padding: EdgeInsets.only(

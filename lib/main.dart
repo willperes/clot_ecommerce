@@ -4,6 +4,7 @@ import 'package:clot/models/screen_arguments/products_screen_arguments.dart';
 import 'package:clot/screens/categories_screen.dart';
 import 'package:clot/screens/home_screen.dart';
 import 'package:clot/screens/product_details_screen.dart';
+import 'package:clot/screens/product_search_screen.dart';
 import 'package:clot/screens/products_screen.dart';
 import 'package:clot/screens/sign_in_screens/sign_in_first_step_screen.dart';
 import 'package:clot/screens/sign_in_screens/sign_in_second_step_screen.dart';
@@ -51,6 +52,8 @@ class _ClotAppState extends State<ClotApp> {
                   const SignInSecondStepScreen(),
               HomeScreen.routeName: (context) => const HomeScreen(),
               CategoriesScreen.routeName: (context) => const CategoriesScreen(),
+              ProductSearchScreen.routeName: (context) =>
+                  const ProductSearchScreen(),
             },
             onGenerateRoute: (settings) {
               if (settings.name == ProductsScreen.routeName) {

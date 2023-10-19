@@ -7,6 +7,7 @@ import 'package:clot/utils/show_custom_bottom_sheet.dart';
 import 'package:clot/widgets/bottom_sheet_list_item.dart';
 import 'package:clot/widgets/bottom_sheet_list_opener.dart';
 import 'package:clot/widgets/circular_icon_button.dart';
+import 'package:clot/widgets/default_back_button.dart';
 import 'package:clot/widgets/skeleton.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -37,7 +38,9 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
     final product = widget.arguments.product;
 
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(
+        leading: const DefaultBackButton(),
+      ),
       body: CustomScrollView(
         slivers: [
           _ImageList(

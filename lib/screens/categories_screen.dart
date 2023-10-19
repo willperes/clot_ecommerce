@@ -3,6 +3,8 @@ import 'package:clot/models/category.dart';
 import 'package:clot/models/screen_arguments/products_screen_arguments.dart';
 import 'package:clot/screens/products_screen.dart';
 import 'package:clot/theme/constants.dart';
+import 'package:clot/widgets/default_back_button.dart';
+import 'package:clot/widgets/search_bar.dart';
 import 'package:clot/widgets/skeleton.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -15,7 +17,10 @@ class CategoriesScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(
+        leading: const DefaultBackButton(),
+        title: const SearchBarPlaceholder(showPadding: true),
+      ),
       body: Padding(
         padding: const EdgeInsets.fromLTRB(
           Constants.screenPadding,

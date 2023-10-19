@@ -10,6 +10,7 @@ import 'package:clot/widgets/home_screen_content/categories.dart';
 import 'package:clot/widgets/home_screen_content/new_in_section.dart';
 import 'package:clot/widgets/home_screen_content/section_title.dart';
 import 'package:clot/widgets/home_screen_content/top_selling.dart';
+import 'package:clot/widgets/search_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
@@ -195,39 +196,11 @@ class _Header extends StatelessWidget {
             ),
           ],
         ),
-        Padding(
-          padding: const EdgeInsets.symmetric(
+        const Padding(
+          padding: EdgeInsets.symmetric(
             vertical: 24,
           ),
-          child: Container(
-            height: 40.h,
-            decoration: BoxDecoration(
-              color: Theme.of(context).colorScheme.tertiary,
-              borderRadius: BorderRadius.circular(100),
-            ),
-            child: Padding(
-              padding: const EdgeInsets.symmetric(
-                horizontal: 20,
-              ),
-              child: Row(
-                children: [
-                  const Padding(
-                    padding: EdgeInsets.only(
-                      right: 12,
-                    ),
-                    child: Icon(
-                      Icons.search,
-                      size: 16,
-                    ),
-                  ),
-                  Text(
-                    "Search",
-                    style: Theme.of(context).textTheme.headlineMedium,
-                  ),
-                ],
-              ),
-            ),
-          ),
+          child: SearchBarPlaceholder(),
         ),
       ],
     );
