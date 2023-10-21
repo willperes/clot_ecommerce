@@ -1,7 +1,10 @@
+import 'package:clot/data/cart_provider.dart';
 import 'package:clot/data/mocks/product_review_mocks.dart';
+import 'package:clot/models/cart_item.dart';
 import 'package:clot/models/product.dart';
 import 'package:clot/models/product_review.dart';
 import 'package:clot/models/screen_arguments/product_details_screen_arguments.dart';
+import 'package:clot/screens/cart_screen.dart';
 import 'package:clot/theme/constants.dart';
 import 'package:clot/utils/show_custom_bottom_sheet.dart';
 import 'package:clot/widgets/bottom_sheet_list_item.dart';
@@ -11,6 +14,7 @@ import 'package:clot/widgets/default_back_button.dart';
 import 'package:clot/widgets/skeleton.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:provider/provider.dart';
 
 class ProductDetailsScreen extends StatefulWidget {
   static const routeName = "product-details";
@@ -31,6 +35,16 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
   void initState() {
     super.initState();
     _selectedSize = widget.arguments.product.sizes[0];
+  }
+
+  void onAddToBag() {
+    final item = CartItem(
+        productId: widget.arguments.product.id,
+        productSize: _selectedSize,
+        quantity: _quantity);
+    Provider.of<CartProvider>(context, listen: false)
+        .addToCart(item: item, shouldSumQuantity: true);
+    Navigator.of(context).pushReplacementNamed(CartScreen.routeName);
   }
 
   @override
@@ -190,7 +204,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                           color: Theme.of(context).colorScheme.secondary,
                         ),
                   ),
-                  _Reviews(),
+                  const _Reviews(),
                 ],
               ),
             ),
@@ -205,7 +219,10 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
             right: 16,
           ),
           child: _AddToBagButton(
-              product: product, selectedQuantity: _quantity, onTap: () {}),
+            product: product,
+            selectedQuantity: _quantity,
+            onTap: onAddToBag,
+          ),
         ),
       ),
     );
@@ -255,10 +272,11 @@ class _ImageList extends StatelessWidget {
 }
 
 class _AddToBagButton extends StatelessWidget {
-  const _AddToBagButton(
-      {required this.product,
-      required this.onTap,
-      required this.selectedQuantity});
+  const _AddToBagButton({
+    required this.product,
+    required this.onTap,
+    required this.selectedQuantity,
+  });
 
   final Product product;
   final int selectedQuantity;

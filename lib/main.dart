@@ -1,3 +1,4 @@
+import 'package:clot/data/cart_provider.dart';
 import 'package:clot/data/products_provider.dart';
 import 'package:clot/models/screen_arguments/product_details_screen_arguments.dart';
 import 'package:clot/models/screen_arguments/products_screen_arguments.dart';
@@ -18,6 +19,7 @@ void main() {
   runApp(MultiProvider(
     providers: [
       ChangeNotifierProvider(create: (context) => ProductsProvider()),
+      ChangeNotifierProvider(create: (context) => CartProvider())
     ],
     child: const ClotApp(),
   ));
