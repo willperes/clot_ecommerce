@@ -1,20 +1,32 @@
 import 'package:clot/models/cart_item.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class CartProvider extends ChangeNotifier {
   CartProvider();
 
-  bool _isLoading = false;
   List<CartItem> _productsInCart = [];
+  final double _shippingPrice = 10.0;
 
-  bool get isLoading => _isLoading;
   List<CartItem> get productsInCart => _productsInCart;
+  double get shippingPrice => _shippingPrice;
 
   Future<void> getData() async {
-    // TODO
+    final prefs = await SharedPreferences.getInstance();
+
+    final data = prefs.getString('cart_items');
+
+    if (data != null) {
+      _productsInCart = CartItem.decode(data);
+    } else {
+      _productsInCart = [];
+    }
+
+    notifyListeners();
   }
 
-  void addToCart({required CartItem item, bool shouldSumQuantity = false}) {
+  void addToCart(
+      {required CartItem item, bool shouldSumQuantity = false}) async {
     final isAlreadyInCart = _productsInCart.where(
       (product) =>
           product.productId == item.productId &&
@@ -22,6 +34,8 @@ class CartProvider extends ChangeNotifier {
     );
 
     if (isAlreadyInCart.isEmpty) {
+      final newList = [...productsInCart, item];
+      await _saveCart(newList);
       _productsInCart = [...productsInCart, item];
       notifyListeners();
 
@@ -42,7 +56,8 @@ class CartProvider extends ChangeNotifier {
 
     if (item.quantity == 0) {
       newList.removeAt(productIndex);
-      _productsInCart = newList;
+      await _saveCart(newList);
+      _productsInCart = [...newList];
 
       notifyListeners();
       return;
@@ -52,11 +67,21 @@ class CartProvider extends ChangeNotifier {
         ? CartItem(
             productId: item.productId,
             productSize: item.productSize,
+            productPrice: item.productPrice,
             quantity: item.quantity + _productsInCart[productIndex].quantity)
         : item;
 
     newList[productIndex] = newItem;
+    await _saveCart(newList);
     _productsInCart = newList;
     notifyListeners();
+  }
+
+  Future<void> _saveCart(List<CartItem> items) async {
+    final prefs = await SharedPreferences.getInstance();
+
+    final cartJson = CartItem.encode(items);
+
+    prefs.setString('cart_items', cartJson);
   }
 }

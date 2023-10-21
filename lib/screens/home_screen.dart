@@ -1,3 +1,4 @@
+import 'package:clot/data/cart_provider.dart';
 import 'package:clot/data/products_provider.dart';
 import 'package:clot/models/screen_arguments/products_screen_arguments.dart';
 import 'package:clot/screens/cart_screen.dart';
@@ -48,6 +49,8 @@ class _HomeScreenState extends State<HomeScreen> {
         context,
         listen: false,
       ).getData();
+
+      Provider.of<CartProvider>(context, listen: false).getData();
     });
   }
 

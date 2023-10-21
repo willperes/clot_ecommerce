@@ -39,9 +39,11 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
 
   void onAddToBag() {
     final item = CartItem(
-        productId: widget.arguments.product.id,
-        productSize: _selectedSize,
-        quantity: _quantity);
+      productId: widget.arguments.product.id,
+      productSize: _selectedSize,
+      productPrice: widget.arguments.product.price,
+      quantity: _quantity,
+    );
     Provider.of<CartProvider>(context, listen: false)
         .addToCart(item: item, shouldSumQuantity: true);
     Navigator.of(context).pushReplacementNamed(CartScreen.routeName);

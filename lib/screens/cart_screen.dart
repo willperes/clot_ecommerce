@@ -4,9 +4,11 @@ import 'package:clot/models/product.dart';
 import 'package:clot/screens/categories_screen.dart';
 import 'package:clot/theme/constants.dart';
 import 'package:clot/widgets/cart_screen_content/cart_product_card.dart';
+import 'package:clot/widgets/cart_screen_content/order_summary.dart';
 import 'package:clot/widgets/default_back_button.dart';
 import 'package:clot/widgets/empty_screen_placeholder.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:provider/provider.dart';
 
@@ -38,46 +40,59 @@ class _CartContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.only(
+        left: Constants.screenPadding,
+        right: Constants.screenPadding,
+        bottom: Constants.screenPadding,
+      ),
+      child: Column(
+        children: [
+          const Expanded(
+            child: CustomScrollView(
+              slivers: [_CartProductList()],
+            ),
+          ),
+          const SizedBox(height: Constants.screenPadding),
+          const OrderSummary(),
+          SizedBox(height: 50.h),
+          TextButton(
+            onPressed: () {},
+            child: const Text('Checkout'),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class _CartProductList extends StatelessWidget {
+  const _CartProductList();
+
+  @override
+  Widget build(BuildContext context) {
     return Consumer<CartProvider>(
       builder: (context, value, child) {
-        return Padding(
-          padding: const EdgeInsets.only(
-            left: Constants.screenPadding,
-            right: Constants.screenPadding,
-            bottom: Constants.screenPadding,
-          ),
-          child: Column(
-            children: [
-              Expanded(
-                child: CustomScrollView(
-                  slivers: [
-                    SliverList.builder(
-                      itemBuilder: (context, index) {
-                        final productList = Provider.of<ProductsProvider>(
-                                context,
-                                listen: false)
-                            .products;
-                        final cartItem = value.productsInCart[index];
-                        final product = productList.firstWhere(
-                            (p) => p.id == cartItem.productId,
-                            orElse: () => Product.empty());
+        return SliverList.builder(
+          itemBuilder: (context, index) {
+            final productList =
+                Provider.of<ProductsProvider>(context, listen: false).products;
+            final cartItem = value.productsInCart[index];
+            final product = productList.firstWhere(
+                (p) => p.id == cartItem.productId,
+                orElse: () => Product.empty());
 
-                        if (product.id == 0) {
-                          return Container();
-                        }
+            if (product.id == 0) {
+              return Container();
+            }
 
-                        return CartProductCard(
-                            product: product,
-                            quantity: cartItem.quantity,
-                            size: cartItem.productSize);
-                      },
-                      itemCount: value.productsInCart.length,
-                    ),
-                  ],
-                ),
-              )
-            ],
-          ),
+            return CartProductCard(
+              product: product,
+              quantity: cartItem.quantity,
+              size: cartItem.productSize,
+            );
+          },
+          itemCount: value.productsInCart.length,
         );
       },
     );

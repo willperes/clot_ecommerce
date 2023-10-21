@@ -95,7 +95,7 @@ class AppTheme {
           ),
           minimumSize: MaterialStatePropertyAll(
             Size(
-              50.w,
+              double.infinity,
               50.h,
             ),
           ),

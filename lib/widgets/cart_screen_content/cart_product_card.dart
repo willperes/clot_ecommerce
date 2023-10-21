@@ -20,7 +20,12 @@ class CartProductCard extends StatelessWidget {
 
   void changeQuantity(BuildContext context, int qty) {
     Provider.of<CartProvider>(context, listen: false).addToCart(
-      item: CartItem(productId: product.id, productSize: size, quantity: qty),
+      item: CartItem(
+        productId: product.id,
+        productSize: size,
+        productPrice: product.price,
+        quantity: qty,
+      ),
     );
   }
 

@@ -41,6 +41,7 @@ dependencies:
   http_interceptor: ^2.0.0-beta.7
   shimmer: ^3.0.0
   flutter_screenutil: ^5.9.0
+  shared_preferences: ^2.2.2
 
 dev_dependencies:
   flutter_test:
