@@ -1,7 +1,8 @@
 import 'package:clot/models/category_model.dart';
 import 'package:clot/models/product_model.dart';
+import 'package:equatable/equatable.dart';
 
-class ProductDataModel {
+class ProductDataModel extends Equatable {
   final List<ProductModel> products;
   final List<CategoryModel> categories;
   final List<ProductModel> topSellingProducts;
@@ -39,4 +40,8 @@ class ProductDataModel {
       newInProducts: newInProducts,
     );
   }
+
+  @override
+  List<Object> get props =>
+      [products, categories, topSellingProducts, newInProducts];
 }
