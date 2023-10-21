@@ -1,21 +1,21 @@
-class Category {
+class CategoryModel {
   final int id;
   final String title;
   final String image;
 
-  const Category({
+  const CategoryModel({
     required this.id,
     required this.title,
     required this.image,
   });
 
-  factory Category.fromJson(Map<String, dynamic> json) => Category(
+  factory CategoryModel.fromJson(Map<String, dynamic> json) => CategoryModel(
         id: json["id"],
         title: json["title"],
         image: json["image"],
       );
 
-  factory Category.empty() => const Category(
+  factory CategoryModel.empty() => const CategoryModel(
         id: 0,
         title: "",
         image: "",

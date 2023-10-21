@@ -1,6 +1,6 @@
 import 'package:clot/data/cart_provider.dart';
 import 'package:clot/data/products_provider.dart';
-import 'package:clot/models/screen_arguments/products_screen_arguments.dart';
+import 'package:clot/models/screen_arguments/products_screen_arguments_model.dart';
 import 'package:clot/screens/cart_screen.dart';
 import 'package:clot/screens/categories_screen.dart';
 import 'package:clot/screens/notifications_screen.dart';
@@ -84,7 +84,7 @@ class _HomeScreenContent extends StatelessWidget {
       Navigator.pushNamed(
         context,
         ProductsScreen.routeName,
-        arguments: ProductsScreenArguments(
+        arguments: ProductsScreenArgumentsModel(
           title: "Top Selling",
           products: products,
         ),
@@ -97,7 +97,7 @@ class _HomeScreenContent extends StatelessWidget {
       Navigator.pushNamed(
         context,
         ProductsScreen.routeName,
-        arguments: ProductsScreenArguments(
+        arguments: ProductsScreenArgumentsModel(
           title: "New In",
           products: products,
         ),

@@ -1,5 +1,5 @@
-import 'package:clot/models/category.dart';
-import 'package:clot/models/product.dart';
+import 'package:clot/models/category_model.dart';
+import 'package:clot/models/product_model.dart';
 import 'package:clot/services/product_service.dart';
 import 'package:flutter/material.dart';
 
@@ -9,38 +9,35 @@ class ProductsProvider extends ChangeNotifier {
   ProductsProvider();
 
   bool _isLoading = false;
-  List<Product> _products = [];
-  List<Category> _categories = [];
-  List<Product> _topSellingProducts = [];
-  List<Product> _newInProducts = [];
+  List<ProductModel> _products = [];
+  List<CategoryModel> _categories = [];
+  List<ProductModel> _topSellingProducts = [];
+  List<ProductModel> _newInProducts = [];
 
   bool get isLoading => _isLoading;
-  List<Product> get products => _products;
-  List<Category> get categories => _categories;
-  List<Product> get topSellingProducts => _topSellingProducts;
-  List<Product> get newInProducts => _newInProducts;
+  List<ProductModel> get products => _products;
+  List<CategoryModel> get categories => _categories;
+  List<ProductModel> get topSellingProducts => _topSellingProducts;
+  List<ProductModel> get newInProducts => _newInProducts;
 
   Future<void> getData() async {
-    _isLoading = true;
-    notifyListeners();
-    final data = await _productService.getAll();
+    try {
+      _isLoading = true;
+      notifyListeners();
+      final data = await _productService.getAll();
 
-    if (data == null) {
-      // TODO: handle exception
+      _products = data.products;
+      _categories = data.categories;
+      _topSellingProducts = data.topSellingProducts;
+      _newInProducts = data.newInProducts;
       _isLoading = false;
       notifyListeners();
-      return;
+    } catch (e) {
+      // TODO: handle exception
     }
-
-    _products = data.products;
-    _categories = data.categories;
-    _topSellingProducts = data.topSellingProducts;
-    _newInProducts = data.newInProducts;
-    _isLoading = false;
-    notifyListeners();
   }
 
-  List<Product> getByCategoryID(int categoryID) {
+  List<ProductModel> getByCategoryID(int categoryID) {
     final category =
         _categories.firstWhere((category) => category.id == categoryID);
     final products = _products

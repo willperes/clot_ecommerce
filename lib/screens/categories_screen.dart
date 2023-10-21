@@ -1,6 +1,6 @@
 import 'package:clot/data/products_provider.dart';
-import 'package:clot/models/category.dart';
-import 'package:clot/models/screen_arguments/products_screen_arguments.dart';
+import 'package:clot/models/category_model.dart';
+import 'package:clot/models/screen_arguments/products_screen_arguments_model.dart';
 import 'package:clot/screens/products_screen.dart';
 import 'package:clot/theme/constants.dart';
 import 'package:clot/widgets/default_back_button.dart';
@@ -61,7 +61,7 @@ class CategoriesScreen extends StatelessWidget {
 class _CategoryCard extends StatelessWidget {
   const _CategoryCard({required this.category});
 
-  final Category category;
+  final CategoryModel category;
 
   void onTap(BuildContext context) {
     final products = Provider.of<ProductsProvider>(context, listen: false)
@@ -69,7 +69,7 @@ class _CategoryCard extends StatelessWidget {
     Navigator.pushNamed(
       context,
       ProductsScreen.routeName,
-      arguments: ProductsScreenArguments(
+      arguments: ProductsScreenArgumentsModel(
         title: category.title,
         products: products,
       ),

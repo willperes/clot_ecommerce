@@ -1,6 +1,6 @@
 import 'package:clot/data/cart_provider.dart';
 import 'package:clot/data/products_provider.dart';
-import 'package:clot/models/product.dart';
+import 'package:clot/models/product_model.dart';
 import 'package:clot/screens/categories_screen.dart';
 import 'package:clot/theme/constants.dart';
 import 'package:clot/widgets/cart_screen_content/cart_product_card.dart';
@@ -81,7 +81,7 @@ class _CartProductList extends StatelessWidget {
           itemBuilder: (context, index) {
             if (value.isLoading) {
               return CartProductCard(
-                product: Product.empty(),
+                product: ProductModel.empty(),
                 size: "",
                 quantity: 0,
                 isLoading: true,
@@ -93,7 +93,7 @@ class _CartProductList extends StatelessWidget {
             final cartItem = value.productsInCart[index];
             final product = productList.firstWhere(
                 (p) => p.id == cartItem.productId,
-                orElse: () => Product.empty());
+                orElse: () => ProductModel.empty());
 
             if (product.id == 0) {
               return const SizedBox.shrink();

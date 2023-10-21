@@ -1,4 +1,4 @@
-import 'package:clot/models/cart_item.dart';
+import 'package:clot/models/cart_item_model.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -6,11 +6,11 @@ class CartProvider extends ChangeNotifier {
   CartProvider();
 
   bool _isLoading = true;
-  List<CartItem> _productsInCart = [];
+  List<CartItemModel> _productsInCart = [];
   final double _shippingPrice = 10.0;
 
   bool get isLoading => _isLoading;
-  List<CartItem> get productsInCart => _productsInCart;
+  List<CartItemModel> get productsInCart => _productsInCart;
   double get shippingPrice => _shippingPrice;
 
   Future<void> getData() async {
@@ -27,7 +27,7 @@ class CartProvider extends ChangeNotifier {
     final data = prefs.getString('cart_items');
 
     if (data != null) {
-      _productsInCart = CartItem.decode(data);
+      _productsInCart = CartItemModel.decode(data);
     } else {
       _productsInCart = [];
     }
@@ -37,7 +37,7 @@ class CartProvider extends ChangeNotifier {
   }
 
   void addToCart(
-      {required CartItem item, bool shouldSumQuantity = false}) async {
+      {required CartItemModel item, bool shouldSumQuantity = false}) async {
     final isAlreadyInCart = _productsInCart.where(
       (product) =>
           product.productId == item.productId &&
@@ -75,7 +75,7 @@ class CartProvider extends ChangeNotifier {
     }
 
     final newItem = shouldSumQuantity
-        ? CartItem(
+        ? CartItemModel(
             productId: item.productId,
             productSize: item.productSize,
             productPrice: item.productPrice,
@@ -88,10 +88,10 @@ class CartProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  Future<void> _saveCart(List<CartItem> items) async {
+  Future<void> _saveCart(List<CartItemModel> items) async {
     final prefs = await SharedPreferences.getInstance();
 
-    final cartJson = CartItem.encode(items);
+    final cartJson = CartItemModel.encode(items);
 
     prefs.setString('cart_items', cartJson);
   }

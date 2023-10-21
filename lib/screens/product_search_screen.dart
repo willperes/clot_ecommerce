@@ -1,5 +1,5 @@
 import 'package:clot/data/products_provider.dart';
-import 'package:clot/models/product.dart';
+import 'package:clot/models/product_model.dart';
 import 'package:clot/screens/categories_screen.dart';
 import 'package:clot/theme/constants.dart';
 import 'package:clot/utils/debouncer.dart';
@@ -22,7 +22,7 @@ class ProductSearchScreen extends StatefulWidget {
 }
 
 class __ProductSearchScreenStateState extends State<ProductSearchScreen> {
-  List<Product> filteredProducts = [];
+  List<ProductModel> filteredProducts = [];
   bool hasNoResults = false;
   final TextEditingController controller = TextEditingController();
   final FocusNode focusNode = FocusNode();

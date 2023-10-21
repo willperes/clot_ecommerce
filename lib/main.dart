@@ -1,7 +1,7 @@
 import 'package:clot/data/cart_provider.dart';
 import 'package:clot/data/products_provider.dart';
-import 'package:clot/models/screen_arguments/product_details_screen_arguments.dart';
-import 'package:clot/models/screen_arguments/products_screen_arguments.dart';
+import 'package:clot/models/screen_arguments/product_details_screen_arguments_model.dart';
+import 'package:clot/models/screen_arguments/products_screen_arguments_model.dart';
 import 'package:clot/screens/cart_screen.dart';
 import 'package:clot/screens/categories_screen.dart';
 import 'package:clot/screens/home_screen.dart';
@@ -61,7 +61,8 @@ class _ClotAppState extends State<ClotApp> {
             },
             onGenerateRoute: (settings) {
               if (settings.name == ProductsScreen.routeName) {
-                final arguments = settings.arguments as ProductsScreenArguments;
+                final arguments =
+                    settings.arguments as ProductsScreenArgumentsModel;
                 return MaterialPageRoute(
                   builder: (context) {
                     return ProductsScreen(arguments: arguments);
@@ -71,7 +72,7 @@ class _ClotAppState extends State<ClotApp> {
 
               if (settings.name == ProductDetailsScreen.routeName) {
                 final arguments =
-                    settings.arguments as ProductDetailsScreenArguments;
+                    settings.arguments as ProductDetailsScreenArgumentsModel;
                 return MaterialPageRoute(
                   builder: (context) {
                     return ProductDetailsScreen(arguments: arguments);

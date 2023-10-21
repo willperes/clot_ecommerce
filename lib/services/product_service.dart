@@ -1,7 +1,7 @@
 import 'dart:convert';
 import 'dart:io';
 
-import 'package:clot/models/product_data.dart';
+import 'package:clot/models/product_data_model.dart';
 import 'package:clot/services/web_client.dart';
 import 'package:http/http.dart' as http;
 
@@ -9,7 +9,7 @@ class ProductService {
   final _client = WebClient().client;
   final _baseURL = WebClient.baseURL;
 
-  Future<ProductData?> getAll() async {
+  Future<ProductDataModel> getAll() async {
     http.Response response = await _client.get(
       Uri.parse("${_baseURL}product/home/"),
     );
@@ -19,6 +19,6 @@ class ProductService {
     }
 
     final Map<String, dynamic> dynamicList = json.decode(response.body);
-    return ProductData.fromJson(dynamicList);
+    return ProductDataModel.fromJson(dynamicList);
   }
 }

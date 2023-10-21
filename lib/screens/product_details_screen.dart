@@ -1,8 +1,8 @@
 import 'package:clot/data/cart_provider.dart';
-import 'package:clot/models/cart_item.dart';
-import 'package:clot/models/product.dart';
-import 'package:clot/models/product_review.dart';
-import 'package:clot/models/screen_arguments/product_details_screen_arguments.dart';
+import 'package:clot/models/cart_item_model.dart';
+import 'package:clot/models/product_model.dart';
+import 'package:clot/models/product_review_model.dart';
+import 'package:clot/models/screen_arguments/product_details_screen_arguments_model.dart';
 import 'package:clot/screens/cart_screen.dart';
 import 'package:clot/theme/constants.dart';
 import 'package:clot/utils/get_random_reviews.dart';
@@ -21,8 +21,8 @@ class ProductDetailsScreen extends StatefulWidget {
 
   ProductDetailsScreen({super.key, required this.arguments});
 
-  final ProductDetailsScreenArguments arguments;
-  final List<ProductReview> _reviews = getRandomReviews();
+  final ProductDetailsScreenArgumentsModel arguments;
+  final List<ProductReviewModel> _reviews = getRandomReviews();
 
   @override
   State<ProductDetailsScreen> createState() => _ProductDetailsScreenState();
@@ -39,7 +39,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
   }
 
   void onAddToBag() {
-    final item = CartItem(
+    final item = CartItemModel(
       productId: widget.arguments.product.id,
       productSize: _selectedSize,
       productPrice: widget.arguments.product.price,
@@ -232,7 +232,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
 class _ImageList extends StatelessWidget {
   const _ImageList({required this.product});
 
-  final Product product;
+  final ProductModel product;
 
   @override
   Widget build(BuildContext context) {
@@ -278,7 +278,7 @@ class _AddToBagButton extends StatelessWidget {
     required this.selectedQuantity,
   });
 
-  final Product product;
+  final ProductModel product;
   final int selectedQuantity;
   final VoidCallback onTap;
 
@@ -324,7 +324,7 @@ class _AddToBagButton extends StatelessWidget {
 class _Reviews extends StatelessWidget {
   const _Reviews({required this.reviews});
 
-  final List<ProductReview> reviews;
+  final List<ProductReviewModel> reviews;
 
   double calculateRating() {
     final double total = reviews.fold(0, (acc, review) => acc + review.rating);
@@ -373,7 +373,7 @@ class _Reviews extends StatelessWidget {
 class _ReviewEntry extends StatelessWidget {
   const _ReviewEntry({required this.review});
 
-  final ProductReview review;
+  final ProductReviewModel review;
 
   @override
   Widget build(BuildContext context) {

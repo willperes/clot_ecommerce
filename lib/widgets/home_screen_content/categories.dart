@@ -1,6 +1,6 @@
 import 'package:clot/data/products_provider.dart';
-import 'package:clot/models/category.dart';
-import 'package:clot/models/screen_arguments/products_screen_arguments.dart';
+import 'package:clot/models/category_model.dart';
+import 'package:clot/models/screen_arguments/products_screen_arguments_model.dart';
 import 'package:clot/screens/products_screen.dart';
 import 'package:clot/widgets/skeleton.dart';
 import 'package:flutter/material.dart';
@@ -54,7 +54,7 @@ class _SkeletonCategories extends StatelessWidget {
       children: [1, 2, 3, 4, 5]
           .map(
             (_) => _CategoryItem(
-              category: Category.empty(),
+              category: CategoryModel.empty(),
               isLoading: true,
             ),
           )
@@ -66,7 +66,7 @@ class _SkeletonCategories extends StatelessWidget {
 class _CategoryItem extends StatelessWidget {
   const _CategoryItem({required this.category, this.isLoading = false});
 
-  final Category category;
+  final CategoryModel category;
   final bool isLoading;
 
   void onTap(BuildContext context) {
@@ -75,7 +75,7 @@ class _CategoryItem extends StatelessWidget {
     Navigator.pushNamed(
       context,
       ProductsScreen.routeName,
-      arguments: ProductsScreenArguments(
+      arguments: ProductsScreenArgumentsModel(
         title: category.title,
         products: products,
       ),

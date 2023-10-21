@@ -1,4 +1,4 @@
-class Product {
+class ProductModel {
   final int id;
   final String title;
   final String subtitle;
@@ -8,7 +8,7 @@ class Product {
   final int categoryID;
   final List<String> sizes;
 
-  const Product({
+  const ProductModel({
     required this.id,
     required this.title,
     required this.subtitle,
@@ -19,14 +19,14 @@ class Product {
     required this.sizes,
   });
 
-  factory Product.fromJson(Map<String, dynamic> data) {
+  factory ProductModel.fromJson(Map<String, dynamic> data) {
     final List<String> images = List<String>.from(data["images"]);
     final List<String> sizes = List<String>.from(data["sizes"]);
     final double price = data["price"] is int
         ? (data["price"] as int).toDouble()
         : data["price"];
 
-    return Product(
+    return ProductModel(
       id: data["id"],
       title: data["title"],
       subtitle: data["subtitle"],
@@ -38,7 +38,7 @@ class Product {
     );
   }
 
-  factory Product.empty() => const Product(
+  factory ProductModel.empty() => const ProductModel(
         id: 0,
         title: "",
         subtitle: "",

@@ -1,6 +1,6 @@
 import 'package:clot/data/cart_provider.dart';
-import 'package:clot/models/cart_item.dart';
-import 'package:clot/models/product.dart';
+import 'package:clot/models/cart_item_model.dart';
+import 'package:clot/models/product_model.dart';
 import 'package:clot/widgets/circular_icon_button.dart';
 import 'package:clot/widgets/skeleton.dart';
 import 'package:flutter/material.dart';
@@ -16,14 +16,14 @@ class CartProductCard extends StatelessWidget {
     required this.isLoading,
   });
 
-  final Product product;
+  final ProductModel product;
   final int quantity;
   final String size;
   final bool isLoading;
 
   void changeQuantity(BuildContext context, int qty) {
     Provider.of<CartProvider>(context, listen: false).addToCart(
-      item: CartItem(
+      item: CartItemModel(
         productId: product.id,
         productSize: size,
         productPrice: product.price,

@@ -1,5 +1,5 @@
 import 'package:clot/data/cart_provider.dart';
-import 'package:clot/models/cart_item.dart';
+import 'package:clot/models/cart_item_model.dart';
 import 'package:clot/widgets/skeleton.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -8,7 +8,7 @@ import 'package:provider/provider.dart';
 class OrderSummary extends StatelessWidget {
   const OrderSummary({super.key});
 
-  double getTotalPrice(List<CartItem> products) {
+  double getTotalPrice(List<CartItemModel> products) {
     var totalPrice = 0.0;
 
     for (var product in products) {

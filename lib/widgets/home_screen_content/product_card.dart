@@ -1,5 +1,5 @@
-import 'package:clot/models/product.dart';
-import 'package:clot/models/screen_arguments/product_details_screen_arguments.dart';
+import 'package:clot/models/product_model.dart';
+import 'package:clot/models/screen_arguments/product_details_screen_arguments_model.dart';
 import 'package:clot/screens/product_details_screen.dart';
 import 'package:clot/theme/constants.dart';
 import 'package:clot/widgets/skeleton.dart';
@@ -9,7 +9,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 class ProductCard extends StatelessWidget {
   const ProductCard({super.key, required this.product, this.isLoading = false});
 
-  final Product product;
+  final ProductModel product;
   final bool isLoading;
 
   @override
@@ -20,7 +20,7 @@ class ProductCard extends StatelessWidget {
       Navigator.pushNamed(
         context,
         ProductDetailsScreen.routeName,
-        arguments: ProductDetailsScreenArguments(
+        arguments: ProductDetailsScreenArgumentsModel(
           product: product,
         ),
       );

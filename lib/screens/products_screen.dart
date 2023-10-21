@@ -1,5 +1,5 @@
 import 'package:clot/data/products_provider.dart';
-import 'package:clot/models/screen_arguments/products_screen_arguments.dart';
+import 'package:clot/models/screen_arguments/products_screen_arguments_model.dart';
 import 'package:clot/theme/constants.dart';
 import 'package:clot/widgets/default_back_button.dart';
 import 'package:clot/widgets/product_grid.dart';
@@ -9,7 +9,7 @@ import 'package:provider/provider.dart';
 class ProductsScreen extends StatelessWidget {
   static const routeName = "products";
 
-  final ProductsScreenArguments arguments;
+  final ProductsScreenArgumentsModel arguments;
 
   const ProductsScreen({super.key, required this.arguments});
 

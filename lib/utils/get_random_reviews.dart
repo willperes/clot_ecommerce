@@ -1,13 +1,13 @@
 import 'dart:math';
 
-import 'package:clot/models/product_review.dart';
+import 'package:clot/models/product_review_model.dart';
 
-List<ProductReview> getRandomReviews() {
+List<ProductReviewModel> getRandomReviews() {
   final amountOfReviews = Random().nextInt(4) + 1;
 
   return List.generate(amountOfReviews, (index) {
     final rating = Random().nextInt(4) + 1;
-    return ProductReview(
+    return ProductReviewModel(
       userName: "John Doe",
       rating: rating,
       comment:

@@ -1,5 +1,5 @@
 import 'package:clot/data/products_provider.dart';
-import 'package:clot/models/product.dart';
+import 'package:clot/models/product_model.dart';
 import 'package:clot/theme/constants.dart';
 import 'package:clot/widgets/home_screen_content/product_card.dart';
 import 'package:flutter/material.dart';
@@ -33,7 +33,7 @@ class TopSellingSection extends StatelessWidget {
               itemBuilder: (context, index) {
                 if (value.isLoading) {
                   return ProductCard(
-                    product: Product.empty(),
+                    product: ProductModel.empty(),
                     isLoading: true,
                   );
                 }
