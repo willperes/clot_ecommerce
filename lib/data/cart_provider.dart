@@ -5,13 +5,23 @@ import 'package:shared_preferences/shared_preferences.dart';
 class CartProvider extends ChangeNotifier {
   CartProvider();
 
+  bool _isLoading = true;
   List<CartItem> _productsInCart = [];
   final double _shippingPrice = 10.0;
 
+  bool get isLoading => _isLoading;
   List<CartItem> get productsInCart => _productsInCart;
   double get shippingPrice => _shippingPrice;
 
   Future<void> getData() async {
+    _isLoading = true;
+    notifyListeners();
+
+    // Future only to simulate the latency of an API call.
+    await Future.delayed(
+      const Duration(seconds: 3),
+    );
+
     final prefs = await SharedPreferences.getInstance();
 
     final data = prefs.getString('cart_items');
@@ -22,6 +32,7 @@ class CartProvider extends ChangeNotifier {
       _productsInCart = [];
     }
 
+    _isLoading = false;
     notifyListeners();
   }
 

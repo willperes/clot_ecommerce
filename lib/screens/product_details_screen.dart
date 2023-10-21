@@ -1,11 +1,11 @@
 import 'package:clot/data/cart_provider.dart';
-import 'package:clot/data/mocks/product_review_mocks.dart';
 import 'package:clot/models/cart_item.dart';
 import 'package:clot/models/product.dart';
 import 'package:clot/models/product_review.dart';
 import 'package:clot/models/screen_arguments/product_details_screen_arguments.dart';
 import 'package:clot/screens/cart_screen.dart';
 import 'package:clot/theme/constants.dart';
+import 'package:clot/utils/get_random_reviews.dart';
 import 'package:clot/utils/show_custom_bottom_sheet.dart';
 import 'package:clot/widgets/bottom_sheet_list_item.dart';
 import 'package:clot/widgets/bottom_sheet_list_opener.dart';
@@ -19,9 +19,10 @@ import 'package:provider/provider.dart';
 class ProductDetailsScreen extends StatefulWidget {
   static const routeName = "product-details";
 
-  const ProductDetailsScreen({super.key, required this.arguments});
+  ProductDetailsScreen({super.key, required this.arguments});
 
   final ProductDetailsScreenArguments arguments;
+  final List<ProductReview> _reviews = getRandomReviews();
 
   @override
   State<ProductDetailsScreen> createState() => _ProductDetailsScreenState();
@@ -206,7 +207,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                           color: Theme.of(context).colorScheme.secondary,
                         ),
                   ),
-                  const _Reviews(),
+                  _Reviews(reviews: widget._reviews),
                 ],
               ),
             ),
@@ -324,7 +325,14 @@ class _AddToBagButton extends StatelessWidget {
 }
 
 class _Reviews extends StatelessWidget {
-  const _Reviews({super.key});
+  const _Reviews({required this.reviews});
+
+  final List<ProductReview> reviews;
+
+  double calculateRating() {
+    final double total = reviews.fold(0, (acc, review) => acc + review.rating);
+    return total / reviews.length.toDouble();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -340,28 +348,26 @@ class _Reviews extends StatelessWidget {
         ),
         const SizedBox(height: 12),
         Text(
-          "3.6 Ratings",
+          "${calculateRating().toStringAsFixed(1)} Ratings",
           style: Theme.of(context).textTheme.displayLarge?.copyWith(
                 fontWeight: FontWeight.bold,
               ),
         ),
         const SizedBox(height: 12),
         Text(
-          "3 Reviews",
+          "${reviews.length} review${reviews.length == 1 ? "" : "s"}",
           style: Theme.of(context).textTheme.headlineMedium?.copyWith(
                 color: Theme.of(context).colorScheme.secondary,
               ),
         ),
         const SizedBox(height: 4),
-        _ReviewEntry(
-          review: productReviewMocks[0],
-        ),
-        _ReviewEntry(
-          review: productReviewMocks[1],
-        ),
-        _ReviewEntry(
-          review: productReviewMocks[2],
-        ),
+        ...reviews
+            .map(
+              (review) => _ReviewEntry(
+                review: review,
+              ),
+            )
+            .toList(),
       ],
     );
   }

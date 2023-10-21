@@ -26,6 +26,10 @@ class CartScreen extends StatelessWidget {
       ),
       body: Consumer<CartProvider>(
         builder: (context, value, child) {
+          if (value.isLoading) {
+            return const _CartContent();
+          }
+
           return value.productsInCart.isNotEmpty
               ? const _CartContent()
               : const _EmptyCart();
@@ -75,6 +79,15 @@ class _CartProductList extends StatelessWidget {
       builder: (context, value, child) {
         return SliverList.builder(
           itemBuilder: (context, index) {
+            if (value.isLoading) {
+              return CartProductCard(
+                product: Product.empty(),
+                size: "",
+                quantity: 0,
+                isLoading: true,
+              );
+            }
+
             final productList =
                 Provider.of<ProductsProvider>(context, listen: false).products;
             final cartItem = value.productsInCart[index];
@@ -90,9 +103,10 @@ class _CartProductList extends StatelessWidget {
               product: product,
               quantity: cartItem.quantity,
               size: cartItem.productSize,
+              isLoading: value.isLoading,
             );
           },
-          itemCount: value.productsInCart.length,
+          itemCount: value.isLoading ? 6 : value.productsInCart.length,
         );
       },
     );
