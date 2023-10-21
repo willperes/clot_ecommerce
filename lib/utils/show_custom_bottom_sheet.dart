@@ -20,8 +20,9 @@ showModalBottomSheetList({
     context: context,
     builder: (context) {
       return Padding(
-        padding:
-            const EdgeInsets.symmetric(horizontal: Constants.screenPadding),
+        padding: EdgeInsets.symmetric(
+          horizontal: Constants.screenPadding,
+        ),
         child: CustomScrollView(
           slivers: [
             SliverPadding(
@@ -31,7 +32,7 @@ showModalBottomSheetList({
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     leading ??
-                        Container(
+                        SizedBox(
                           height: 40.r,
                           width: 40.r,
                         ),
@@ -64,7 +65,7 @@ showModalBottomSheetList({
               ),
             ),
             list,
-            const SliverToBoxAdapter(
+            SliverToBoxAdapter(
               child: SizedBox(
                 height: Constants.screenPadding,
               ),

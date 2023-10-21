@@ -64,7 +64,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
             product: product,
           ),
           SliverPadding(
-            padding: const EdgeInsets.only(
+            padding: EdgeInsets.only(
               top: Constants.screenPadding,
               left: Constants.screenPadding,
               right: Constants.screenPadding,
@@ -216,11 +216,8 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
       ),
       bottomNavigationBar: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.only(
-            top: 16,
-            left: 16,
-            right: 16,
-          ),
+          padding: EdgeInsets.symmetric(
+              horizontal: Constants.screenPadding, vertical: 16.r),
           child: _AddToBagButton(
             product: product,
             selectedQuantity: _quantity,
@@ -244,7 +241,7 @@ class _ImageList extends StatelessWidget {
         height: 248.h,
         child: ListView.separated(
           scrollDirection: Axis.horizontal,
-          padding: const EdgeInsets.symmetric(
+          padding: EdgeInsets.symmetric(
             horizontal: Constants.screenPadding,
           ),
           itemBuilder: (context, index) {

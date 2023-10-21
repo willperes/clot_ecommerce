@@ -39,8 +39,9 @@ class BottomSheetListOpener extends StatelessWidget {
                           color: Theme.of(context).colorScheme.onTertiary),
                     ),
                     Padding(
-                      padding:
-                          const EdgeInsets.only(right: Constants.screenPadding),
+                      padding: EdgeInsets.only(
+                        right: Constants.screenPadding,
+                      ),
                       child: child,
                     ),
                   ],

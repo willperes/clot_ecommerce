@@ -26,7 +26,7 @@ class TopSellingSection extends StatelessWidget {
                     : 10);
 
             return ListView.separated(
-              padding: const EdgeInsets.symmetric(
+              padding: EdgeInsets.symmetric(
                 horizontal: Constants.screenPadding,
               ),
               scrollDirection: Axis.horizontal,

@@ -22,7 +22,7 @@ class CategoriesScreen extends StatelessWidget {
         title: const SearchBarPlaceholder(showPadding: true),
       ),
       body: Padding(
-        padding: const EdgeInsets.fromLTRB(
+        padding: EdgeInsets.fromLTRB(
           Constants.screenPadding,
           0,
           Constants.screenPadding,
@@ -101,14 +101,14 @@ class _CategoryCard extends StatelessWidget {
                   borderRadius: BorderRadius.circular(100),
                   child: Image.network(
                     category.image,
-                    height: 40.h,
-                    width: 40.w,
+                    height: 40.r,
+                    width: 40.r,
                     fit: BoxFit.cover,
                     loadingBuilder: (context, child, loadingProgress) {
                       if (loadingProgress != null) {
                         return Skeleton(
-                          height: 40.h,
-                          width: 40.w,
+                          height: 40.r,
+                          width: 40.r,
                           borderRadius: BorderRadius.circular(100),
                         );
                       }

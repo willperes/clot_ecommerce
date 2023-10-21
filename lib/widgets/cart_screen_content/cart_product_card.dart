@@ -166,6 +166,7 @@ class CartProductCard extends StatelessWidget {
                   height: 50,
                   width: 60.w,
                   child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.end,
                     children: [
                       isLoading

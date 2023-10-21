@@ -14,7 +14,7 @@ class ProductCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final cardWidth = 159.0.w;
+    final cardWidth = 159.w;
 
     void onTap() {
       Navigator.pushNamed(
@@ -40,7 +40,7 @@ class ProductCard extends StatelessWidget {
             children: [
               isLoading
                   ? Skeleton(
-                      height: Constants.productCardHeight * 0.78,
+                      height: 220.h,
                       width: double.infinity,
                       borderRadius: const BorderRadius.only(
                         topLeft: Radius.circular(8),
@@ -54,12 +54,13 @@ class ProductCard extends StatelessWidget {
                       ),
                       child: Image.network(
                         product.images[0],
-                        height: Constants.productCardHeight * 0.78,
+                        height: 220.h,
+                        width: double.infinity,
                         fit: BoxFit.cover,
                         loadingBuilder: (context, child, loadingProgress) {
                           if (loadingProgress != null) {
                             return Skeleton(
-                              height: Constants.productCardHeight * 0.78,
+                              height: 220.h,
                               width: double.infinity,
                             );
                           }
@@ -146,7 +147,7 @@ class ProductCard extends StatelessWidget {
                   ),
                 ),
               )
-            : Container(),
+            : const SizedBox.shrink(),
       ],
     );
   }

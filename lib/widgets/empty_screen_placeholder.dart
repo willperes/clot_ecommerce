@@ -19,7 +19,7 @@ class EmptyScreenPlaceholder extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(Constants.screenPadding),
+      padding: EdgeInsets.all(Constants.screenPadding),
       child: Container(
         alignment: Alignment.center,
         color: Theme.of(context).colorScheme.background,
@@ -27,13 +27,13 @@ class EmptyScreenPlaceholder extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             image,
-            const SizedBox(height: Constants.screenPadding),
+            SizedBox(height: Constants.screenPadding),
             Text(
               text,
               textAlign: TextAlign.center,
               style: Theme.of(context).textTheme.displayMedium,
             ),
-            const SizedBox(height: Constants.screenPadding),
+            SizedBox(height: Constants.screenPadding),
             SizedBox(
               width: 192.w,
               child: TextButton(

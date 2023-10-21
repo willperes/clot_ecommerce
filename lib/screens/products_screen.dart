@@ -23,11 +23,11 @@ class ProductsScreen extends StatelessWidget {
         builder: (context, value, child) {
           if (arguments.products.isEmpty) {
             Navigator.of(context).pop();
-            return Container();
+            return const SizedBox.shrink();
           }
 
           return Padding(
-            padding: const EdgeInsets.symmetric(
+            padding: EdgeInsets.symmetric(
               horizontal: Constants.screenPadding,
             ),
             child: CustomScrollView(
@@ -40,7 +40,7 @@ class ProductsScreen extends StatelessWidget {
                         ),
                   ),
                 ),
-                const SliverPadding(
+                SliverPadding(
                   padding: EdgeInsets.only(
                     top: Constants.screenPadding,
                   ),
@@ -48,7 +48,7 @@ class ProductsScreen extends StatelessWidget {
                 ProductGrid(
                   products: arguments.products,
                 ),
-                const SliverPadding(
+                SliverPadding(
                   padding: EdgeInsets.only(
                     top: Constants.screenPadding,
                   ),

@@ -43,10 +43,14 @@ class BottomSheetListItem extends StatelessWidget {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text(title,
-                    style: Theme.of(context).textTheme.displaySmall?.copyWith(
-                        color: foregroundColor, fontWeight: FontWeight.w500)),
-                child ?? Container(),
+                Text(
+                  title,
+                  style: Theme.of(context).textTheme.displaySmall?.copyWith(
+                        color: foregroundColor,
+                        fontWeight: FontWeight.w500,
+                      ),
+                ),
+                child ?? const SizedBox.shrink(),
                 isSelected
                     ? Icon(
                         Icons.check,

@@ -38,8 +38,12 @@ class _SignInSecondStepScreenState extends State<SignInSecondStepScreen> {
         leading: const DefaultBackButton(),
       ),
       body: ListView(
-        padding: const EdgeInsets.fromLTRB(Constants.screenPadding, 0,
-            Constants.screenPadding, Constants.screenPadding),
+        padding: EdgeInsets.fromLTRB(
+          Constants.screenPadding,
+          0,
+          Constants.screenPadding,
+          Constants.screenPadding,
+        ),
         children: [
           Text(
             "Sign In",

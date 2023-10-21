@@ -93,10 +93,10 @@ class __ProductSearchScreenStateState extends State<ProductSearchScreen> {
         leading: const DefaultBackButton(),
       ),
       body: hasNoResults
-          ? _NoResults()
+          ? const _NoResults()
           : Padding(
-              padding: const EdgeInsets.symmetric(
-                  horizontal: Constants.screenPadding),
+              padding:
+                  EdgeInsets.symmetric(horizontal: Constants.screenPadding),
               child: CustomScrollView(
                 slivers: [
                   SliverToBoxAdapter(child: SizedBox(height: 10.h)),

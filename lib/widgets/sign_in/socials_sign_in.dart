@@ -53,10 +53,14 @@ class _SocialButton extends StatelessWidget {
         case "Google":
           return Padding(
             padding: const EdgeInsets.only(left: 2),
-            child: Image.asset("assets/icons/google_logo.png"),
+            child: Image.asset(
+              "assets/icons/google_logo.png",
+              height: 24.r,
+              width: 24.r,
+            ),
           );
         default:
-          return Container();
+          return const SizedBox.shrink();
       }
     })();
 

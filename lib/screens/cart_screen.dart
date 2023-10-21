@@ -45,7 +45,7 @@ class _CartContent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(
+      padding: EdgeInsets.only(
         left: Constants.screenPadding,
         right: Constants.screenPadding,
         bottom: Constants.screenPadding,
@@ -57,7 +57,7 @@ class _CartContent extends StatelessWidget {
               slivers: [_CartProductList()],
             ),
           ),
-          const SizedBox(height: Constants.screenPadding),
+          SizedBox(height: Constants.screenPadding),
           const OrderSummary(),
           SizedBox(height: 50.h),
           TextButton(
@@ -96,7 +96,7 @@ class _CartProductList extends StatelessWidget {
                 orElse: () => Product.empty());
 
             if (product.id == 0) {
-              return Container();
+              return const SizedBox.shrink();
             }
 
             return CartProductCard(

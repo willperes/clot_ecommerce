@@ -78,8 +78,8 @@ class _SelectedIconBox extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 40.h,
-      width: 40.w,
+      height: 40.r,
+      width: 40.r,
       decoration: BoxDecoration(
         color: Theme.of(context).colorScheme.primary,
         borderRadius: BorderRadius.circular(100),

@@ -31,7 +31,7 @@ class _NewInSectionState extends State<NewInSection> {
                     : 10);
 
             return ListView.separated(
-              padding: const EdgeInsets.symmetric(
+              padding: EdgeInsets.symmetric(
                 horizontal: Constants.screenPadding,
               ),
               scrollDirection: Axis.horizontal,

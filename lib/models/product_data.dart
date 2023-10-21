@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:clot/models/category.dart';
 import 'package:clot/models/product.dart';
 
@@ -9,11 +7,12 @@ class ProductData {
   final List<Product> topSellingProducts;
   final List<Product> newInProducts;
 
-  const ProductData(
-      {required this.products,
-      required this.categories,
-      required this.topSellingProducts,
-      required this.newInProducts});
+  const ProductData({
+    required this.products,
+    required this.categories,
+    required this.topSellingProducts,
+    required this.newInProducts,
+  });
 
   factory ProductData.fromJson(Map<String, dynamic> data) {
     final List<dynamic> productsJson = data["products"];

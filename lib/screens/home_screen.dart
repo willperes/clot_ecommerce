@@ -114,7 +114,7 @@ class _HomeScreenContent extends StatelessWidget {
           child: ListView(
             children: [
               Padding(
-                padding: const EdgeInsets.symmetric(
+                padding: EdgeInsets.symmetric(
                   horizontal: Constants.screenPadding,
                 ),
                 child: Column(
@@ -125,7 +125,7 @@ class _HomeScreenContent extends StatelessWidget {
                       onTap: onCategoriesTap,
                     ),
                     const CategoriesSection(),
-                    const SizedBox(
+                    SizedBox(
                       height: Constants.screenPadding,
                     ),
                     SectionTitle(
@@ -136,11 +136,11 @@ class _HomeScreenContent extends StatelessWidget {
                 ),
               ),
               const TopSellingSection(),
-              const SizedBox(
+              SizedBox(
                 height: Constants.screenPadding,
               ),
               Padding(
-                padding: const EdgeInsets.symmetric(
+                padding: EdgeInsets.symmetric(
                   horizontal: Constants.screenPadding,
                 ),
                 child: SectionTitle(
@@ -150,7 +150,7 @@ class _HomeScreenContent extends StatelessWidget {
                 ),
               ),
               const NewInSection(),
-              const SizedBox(
+              SizedBox(
                 height: Constants.screenPadding,
               ),
             ],
@@ -168,12 +168,13 @@ class _Header extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
+        SizedBox(height: Constants.screenPadding),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Container(
-              height: 40.h,
-              width: 40.w,
+              height: 40.r,
+              width: 40.r,
               alignment: Alignment.center,
               decoration: BoxDecoration(
                 color: Theme.of(context).colorScheme.tertiary,
@@ -190,8 +191,8 @@ class _Header extends StatelessWidget {
                 Navigator.of(context).pushNamed(CartScreen.routeName);
               },
               child: Ink(
-                height: 40.h,
-                width: 40.w,
+                height: 40.r,
+                width: 40.r,
                 decoration: BoxDecoration(
                   color: Theme.of(context).colorScheme.primary,
                   borderRadius: BorderRadius.circular(100),

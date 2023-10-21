@@ -89,16 +89,16 @@ class _CategoryItem extends StatelessWidget {
         onTap(context);
       },
       child: SizedBox(
-        height: 80.h,
-        width: 56.w,
+        height: 80.r,
+        width: 56.r,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             isLoading
                 ? Skeleton(
-                    height: 56.h,
-                    width: 56.w,
+                    height: 56.r,
+                    width: 56.r,
                     borderRadius: BorderRadius.circular(100),
                   )
                 : ClipRRect(
@@ -106,13 +106,13 @@ class _CategoryItem extends StatelessWidget {
                     child: Image.network(
                       category.image,
                       fit: BoxFit.cover,
-                      height: 56.h,
-                      width: 56.w,
+                      height: 56.r,
+                      width: 56.r,
                       loadingBuilder: (context, child, loadingProgress) {
                         if (loadingProgress != null) {
                           return Skeleton(
-                            height: 56.h,
-                            width: 56.w,
+                            height: 56.r,
+                            width: 56.r,
                             borderRadius: BorderRadius.circular(100),
                           );
                         }
@@ -123,8 +123,12 @@ class _CategoryItem extends StatelessWidget {
                   ),
             const Spacer(),
             isLoading
-                ? const Skeleton(
-                    child: Text("Loading"),
+                ? Skeleton(
+                    child: Text(
+                      "Category",
+                      overflow: TextOverflow.ellipsis,
+                      style: Theme.of(context).textTheme.headlineMedium,
+                    ),
                   )
                 : Text(
                     category.title,
