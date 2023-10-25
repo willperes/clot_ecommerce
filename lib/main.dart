@@ -45,7 +45,7 @@ class _ClotAppState extends State<ClotApp> {
           return MaterialApp(
             title: 'Clot',
             theme: AppTheme().getTheme("light"),
-            darkTheme: AppTheme().getTheme("dark"),
+            // darkTheme: AppTheme().getTheme("dark"),
             initialRoute: HomeScreen.routeName,
             navigatorObservers: [HeroController()],
             routes: {
