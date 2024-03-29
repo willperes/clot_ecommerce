@@ -1,6 +1,8 @@
 import 'dart:convert';
 
-class CartItemModel {
+import 'package:equatable/equatable.dart';
+
+class CartItemModel extends Equatable {
   final int productId;
   final String productSize;
   final double productPrice;
@@ -42,4 +44,7 @@ class CartItemModel {
             (item) => CartItemModel.fromJson(item),
           )
           .toList();
+
+  @override
+  List<Object> get props => [productId, productSize, productPrice, quantity];
 }
