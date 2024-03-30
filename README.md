@@ -4,6 +4,8 @@
 
 This is a Flutter mobile application basead on a [Figma Ecommerce UI Kit](https://www.figma.com/community/file/1233130764703685276) by Emmanuel Nwankwo. This is my first Flutter project which I started with the objective to apply the knowledge recently acquired during a Flutter course by [Alura](https://alura.com.br).
 
+https://github.com/willperes/clot_ecommerce/assets/64440935/ffc3a2af-6b96-4eaf-aa1e-1fa87b93dd87
+
 ## Getting Started
 
 Firstly this project relies on a back-end service which you can check [here](https://github.com/willperes/clot_ecommerce_api). This API provides the data needed to run the application, such as category and product data. More info on how to use it on it's repository.
