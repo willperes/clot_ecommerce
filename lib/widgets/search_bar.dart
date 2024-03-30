@@ -30,15 +30,17 @@ class CustomSearchBar extends StatelessWidget {
             hintText: 'Search',
             prefixIcon: Icon(Icons.search,
                 size: 16.r, color: Theme.of(context).colorScheme.onBackground),
-            suffixIcon: GestureDetector(
-              onTap: () {
-                controller.clear();
-                onClear();
-              },
-              child: Icon(Icons.close,
-                  size: 16.r,
-                  color: Theme.of(context).colorScheme.onBackground),
-            ),
+            suffixIcon: controller.text.isNotEmpty
+                ? GestureDetector(
+                    onTap: () {
+                      controller.clear();
+                      onClear();
+                    },
+                    child: Icon(Icons.close,
+                        size: 16.r,
+                        color: Theme.of(context).colorScheme.onBackground),
+                  )
+                : const SizedBox(),
             contentPadding:
                 const EdgeInsets.symmetric(horizontal: 0, vertical: 0),
             hintStyle: const TextStyle(

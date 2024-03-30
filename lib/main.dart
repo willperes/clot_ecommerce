@@ -46,7 +46,7 @@ class _ClotAppState extends State<ClotApp> {
             title: 'Clot',
             theme: AppTheme().getTheme("light"),
             // darkTheme: AppTheme().getTheme("dark"),
-            initialRoute: HomeScreen.routeName,
+            initialRoute: SignInFirstStepScreen.routeName,
             navigatorObservers: [HeroController()],
             routes: {
               SignInFirstStepScreen.routeName: (context) =>
