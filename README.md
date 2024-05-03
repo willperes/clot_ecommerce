@@ -1,5 +1,3 @@
-### 🚧 This branch is still under development 🚧
-
 # Clot Ecommerce
 
 This is a Flutter mobile application basead on a [Figma Ecommerce UI Kit](https://www.figma.com/community/file/1233130764703685276) by Emmanuel Nwankwo. This is my first Flutter project which I started with the objective to apply the knowledge recently acquired during a Flutter course by [Alura](https://alura.com.br).
